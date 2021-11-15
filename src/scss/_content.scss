@@ -1,0 +1,49 @@
+
+.content{
+  grid-area: c;
+  //border: black solid 1px;
+  margin: 0 10px 0px 20px;
+  display: flex;
+  flex-direction: column;
+    &__image{
+      height: 150px;
+      width: 100%;
+      background: blue;
+      margin-bottom: 20px;
+    }
+}
+
+
+.profile{
+  display: flex;
+  flex-direction: row;
+  height: 500px;
+  width: 100%;
+    &__photo{
+      width: 20%;
+      //border: black solid 1px;
+      height: 196px;
+      border-radius: 100px;
+      background-color: blue;
+    }
+}
+.description{
+  //border: black solid 1px;
+  flex-grow: 1;
+  //background-color: aquamarine;
+  padding-left: 20px;
+}
+
+.posts{
+  display: flex;
+  flex-direction: column;
+
+    &__title{
+      font-family: 'Lexend-Semibold';
+      font-size: 28px;
+      color: $gray;
+      letter-spacing: 1px;
+
+    }
+
+}

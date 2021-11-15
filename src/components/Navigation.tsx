@@ -4,18 +4,22 @@ const Navigation = () => {
     return (
         <nav className={'nav'}>
             <ul>
-                <li>
+                <li className={'nav__elem'}>
                     <a>Profile</a>
                 </li>
-                <li>
+                <li className={'nav__elem'}>
                     <a>Message</a>
                 </li>
-                <li>
+                <li className={'nav__elem'}>
+                    <a>Friends</a>
+                </li>
+                <li className={'nav__elem'}>
                     <a>News</a>
                 </li>
-                <li>
+                <li className={'nav__elem'}>
                     <a>Music</a>
                 </li>
+
             </ul>
         </nav>
     )

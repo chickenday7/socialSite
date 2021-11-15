@@ -3,16 +3,17 @@ import React from "react";
 const Content = () => {
     return (
         <div className={'content'}>
-            <div>image</div>
+            <div className={'content__image'}>image</div>
 
-            <div>Profile
-                <div>Avatar</div>
-                <div>description</div>
+            <div className={'profile'} >
+                <div className={'profile__photo'}></div>
+                <div className={'description'}>Description</div>
             </div>
-            <div>Post
-                <div>New post</div>
-                <div>post 1</div>
-                <div>post 2</div>
+            <div className={'posts'}>
+                <div className={'posts__title'}>My posts</div>
+                <div className={'addPosts'}>Add post</div>
+                <div className={'existingPost'}>post 1</div>
+                <div className={'existingPost'}>post 2</div>
             </div>
 
         </div>
