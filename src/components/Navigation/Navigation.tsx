@@ -4,7 +4,8 @@ import {NavLink} from "react-router-dom";
 const Navigation = () => {
 
     let activeStyle:any = {             // тут надо спросить!!!!!!!!!!!!!!!!!!!//
-        textDecoration: "underline"
+        textDecoration: "none",
+        color: "orange"
     };
     return (
         <nav className={'nav'}>
@@ -20,13 +21,19 @@ const Navigation = () => {
                     }>Messages</NavLink>
                 </li>
                 <li className={'nav__elem'}>
-                    <NavLink to="/friends">Friends</NavLink>
+                    <NavLink to="/friends" style = {({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                    }>Friends</NavLink>
                 </li>
                 <li className={'nav__elem'}>
-                    <NavLink to="/news">News</NavLink>
+                    <NavLink to="/news" style = {({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                    }>News</NavLink>
                 </li>
                 <li className={'nav__elem'}>
-                    <NavLink to="/music">Music</NavLink>
+                    <NavLink to="/music" style = {({ isActive }) =>
+                        isActive ? activeStyle : undefined
+                    }>Music</NavLink>
                 </li>
 
             </ul>
