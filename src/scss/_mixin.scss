@@ -1,0 +1,45 @@
+@mixin buttonSend() {
+  width: 106px;
+  height: 51px;
+  cursor: pointer;
+  background-color: white;
+  border: $gray solid 1px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__text{
+    font-family: "Lexend-Medium";
+    color: $gray;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 28.51px;
+    letter-spacing: -3.5%;
+    margin: 0;
+  }
+}
+
+@mixin patternPosts{
+  display: flex;
+  flex-direction: row;
+  height: 80px;
+  &__photo{
+    border: black solid 1px;
+    border-radius: 80px;
+    width: 80px;
+    height: 80px ;
+    background-color: blue;
+  }
+  &__text{
+    flex-grow: 1;
+    padding: 10px 0 5px 20px;
+    font-family: Lexend-Regular;
+    color: $gray;
+  }
+  &__like{
+    margin: auto 5px;
+    cursor: pointer;
+    font-family: Lexend-Semibold;
+    color: blue;
+  }
+}

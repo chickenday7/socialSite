@@ -1,21 +1,25 @@
 @import "font";
 @import "vars";
+@import "mixin";
 @import "header";
 @import "navigation";
-@import "content";
+@import "profile/content";
 
 
-
-.app-wrapper{
+.app-wrapper {
   display: grid;
   grid-template-areas:
   "h h h"
   "n c c";
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
-  margin: 0px 350px;
+  width: 1203px;
+  margin: 0 auto;
 }
 
+.app-wrapper__content{
+  grid-area: c;
+}
 
 
 

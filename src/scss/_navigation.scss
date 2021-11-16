@@ -4,6 +4,10 @@ ul{
 }
 li{
   list-style-type: none;
+    & > a{
+      text-decoration: none;
+
+    }
 }
 
 
@@ -16,6 +20,7 @@ li{
       margin: 5px 0 0 10px;
       font-size: 16px;
       color: $gray;
+      cursor: pointer;
 
 
     }

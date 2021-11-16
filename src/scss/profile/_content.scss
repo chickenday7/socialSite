@@ -1,0 +1,116 @@
+
+.content {
+  //border: black solid 1px;
+  margin: 0 10px 0px 20px;
+  display: flex;
+  flex-direction: column;
+
+  &__image {
+    height: 150px;
+    width: 100%;
+    background: blue;
+    margin-bottom: 20px;
+  }
+}
+
+
+.profile {
+  display: flex;
+  flex-direction: row;
+  height: 500px;
+  width: 100%;
+
+  &__photo {
+    width: 196px;
+    border: black solid 1px;
+    height: 196px;
+    border-radius: 100px;
+    background-color: blue;
+  }
+}
+
+.description {
+  //border: black solid 1px;
+  flex-grow: 1;
+  //background-color: aquamarine;
+  padding-left: 20px;
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    font-family: 'Lexend-Semibold';
+    font-size: 28px;
+    color: $gray;
+    letter-spacing: 1px;
+    margin-left: 15px;
+    margin-top: 50px;
+
+  }
+
+}
+
+.addPosts {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  //border: black solid 1px;
+  &__input {
+    display: flex;
+    flex-direction: row;
+    border: $gray solid 0.2px;
+    border-radius: 25px;
+    //background: green;
+    height: 80px;
+    align-items: baseline;
+
+    & > textarea {
+      //background-color: cyan;
+      width: 95%;
+      height: 65px;
+      border: none;
+      outline: none;
+      font-family: Lexend-Medium;
+      color: $gray;
+      margin: 7px 0 0 15px;
+      resize: none;
+    }
+  }
+
+  &__button {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    margin-top: 15px;
+  }
+}
+
+.button {
+  @include buttonSend();
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+
+  &__item {
+    margin-top: 80px;
+    //flex-direction: column;
+    &:nth-last-child(1) {
+      margin-bottom: 100px;
+    }
+
+    &:nth-child(1) {
+      margin-top: 50px;
+    }
+  }
+}
+
+.patternPosts {
+  @include patternPosts
+}
+
+
+
