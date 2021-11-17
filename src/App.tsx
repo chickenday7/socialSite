@@ -1,12 +1,19 @@
-import React from 'react';
+import React,{FC, PropsWithChildren} from 'react';
 import './scss/App.scss';
 import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
-import Content from "./components/Content/profile/Content";
-import Messages from "./components/Messages/Messages";
+import Messages from "./components/Content/Messages/Messages";
 import {BrowserRouter, Route, Link, Routes} from "react-router-dom";
+import Profile from "./components/Content/profile/Profile";
+import {typeObjectsMessagesData} from "./index";
 
-function App() {
+
+type Props = {
+    dataMessages:Array<typeObjectsMessagesData>,
+}
+
+
+const App:FC<Props> = (props) => {
     return (
         <BrowserRouter>
 
@@ -15,9 +22,9 @@ function App() {
                 <Navigation/>
                 <div className={'app-wrapper__content'}>
                     <Routes>
-                        <Route path={"/"} element={<Content/>}/>
-                        <Route path={"/profile"} element={<Content/>}/>
-                        <Route path={"/messages"} element={<Messages/>}/>
+                        <Route path={"/*"} element={<Profile/>}/>
+                        <Route path={"/profile/*"} element={<Profile/>}/>
+                        <Route path={"/messages/*"} element={<Messages dataMessages={props.dataMessages}/>}/>
                     </Routes>
                 </div>
             </div>

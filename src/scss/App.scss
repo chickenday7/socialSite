@@ -1,9 +1,10 @@
-@import "font";
-@import "vars";
-@import "mixin";
-@import "header";
-@import "navigation";
+@import "font/font";
+@import "vars/vars";
+@import "mixin/mixin";
+@import "header/header";
+@import "navigation/navigation";
 @import "profile/content";
+@import "messages/messages";
 
 
 .app-wrapper {
@@ -19,6 +20,7 @@
 
 .app-wrapper__content{
   grid-area: c;
+  margin: 0 10px 0 20px;
 }
 
 

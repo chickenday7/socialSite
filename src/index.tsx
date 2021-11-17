@@ -1,17 +1,30 @@
-import React from 'react';
+import React,{FC, PropsWithChildren} from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+
+export type typeObjectsMessagesData = {
+    id: number,
+    message:string
+};
+
+let messagesData:Array<typeObjectsMessagesData> = [{id: 1, message: 'Blabla'},
+    {id: 2, message: 'Lala'},
+    {id: 3, message: 'Bruh...'},
+    {id: 4, message: 'JINGO'},
+    {id: 5, message: 'JANGO'}
+];
+
+
+
 ReactDOM.render(
-   <App />,
+   <App dataMessages = {messagesData} />,
   document.getElementById('root')
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+
 reportWebVitals();
 
 

@@ -2,7 +2,7 @@ import React, {FC, PropsWithChildren} from "react";
 
 type Props = {
     news:string,
-    like:string
+    like:number
 }
 
 const addedPosts:FC<Props> = (props:PropsWithChildren<Props>) =>{

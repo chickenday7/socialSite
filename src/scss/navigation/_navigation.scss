@@ -9,6 +9,10 @@ li{
         &:visited{
           color: $gray;
         }
+        &:hover{
+          color: orange;
+          //text-decoration: underline;
+        }
     }
 }
 

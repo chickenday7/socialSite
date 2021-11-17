@@ -2,10 +2,30 @@ import React from "react";
 import {NavLink} from "react-router-dom";
 
 const Navigation = () => {
+    // TYPE DECLARATION!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // declare function NavLink(
+    //     props: NavLinkProps
+    // ): React.ReactElement;
+    //
+    // interface NavLinkProps
+    //     extends Omit<LinkProps, "className" | "style"> {
+    //     caseSensitive?: boolean;
+    //     className?:
+    //         | string
+    //         | ((props: { isActive: boolean }) => string);
+    //     end?: boolean;
+    //     style?:
+    //         | React.CSSProperties
+    //         | ((props: {
+    //         isActive: boolean;
+    //     }) => React.CSSProperties);
+    // }
+
 
     let activeStyle:any = {             // тут надо спросить!!!!!!!!!!!!!!!!!!!//
         textDecoration: "none",
-        color: "orange"
+        color: "orange",
+        fontSize: 22 + 'px'
     };
     return (
         <nav className={'nav'}>
