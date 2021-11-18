@@ -5,15 +5,14 @@ import Navigation from "./components/Navigation/Navigation";
 import Messages from "./components/Content/Messages/Messages";
 import {BrowserRouter, Route, Link, Routes} from "react-router-dom";
 import Profile from "./components/Content/profile/Profile";
-import {typeObjectsMessagesData} from "./index";
+import {propsApp} from "./components/Redux/state";
 
 
-type Props = {
-    dataMessages:Array<typeObjectsMessagesData>,
-}
 
 
-const App:FC<Props> = (props) => {
+
+
+const App:FC<propsApp> = (props) => {
     return (
         <BrowserRouter>
 
@@ -22,9 +21,13 @@ const App:FC<Props> = (props) => {
                 <Navigation/>
                 <div className={'app-wrapper__content'}>
                     <Routes>
-                        <Route path={"/*"} element={<Profile/>}/>
-                        <Route path={"/profile/*"} element={<Profile/>}/>
-                        <Route path={"/messages/*"} element={<Messages dataMessages={props.dataMessages}/>}/>
+                        <Route path={"/*"} element={<Profile postsData={props.state.postsData}  />}/>
+                        <Route path={"/profile/*"} element={<Profile postsData={props.state.postsData} />}/>
+                        <Route path={"/messages/*"} element={
+                            <Messages
+                            messagesData={props.state.messagesData}
+                            dialogsData={props.state.dialogsData} />}
+                        />
                     </Routes>
                 </div>
             </div>

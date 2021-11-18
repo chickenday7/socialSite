@@ -1,15 +1,14 @@
 import React,{FC, PropsWithChildren} from "react";
 import AllMessages__item from "./AllMessages__item";
-import {typeObjectsMessagesData} from "../../../../index";
-
-type Props = {
-    dataMessages:Array<typeObjectsMessagesData>
-};
+import {IState, ObjectsMessageData} from "../../../Redux/state";
 
 
-const Dialog__messages:FC<Props> = (props) => {
-    // разобраться какие элементы и тип переменной!!!!!!!!!!!!!!!!!!!
-    let messagesComponent: any = props.dataMessages.map((elem: any) => {
+
+
+const Dialog__messages:FC<IState> = (props) => {
+    console.log(props.messagesData)
+    // РАЗОБРАЛСЯ!!!!!!!!!!!!!!!!!!!
+    let messagesComponent:React.ReactNode = props.messagesData!.map((elem:ObjectsMessageData) => {
         return <AllMessages__item text={elem.message}/>;
     })
 

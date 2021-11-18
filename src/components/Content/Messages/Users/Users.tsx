@@ -1,18 +1,12 @@
-import React from "react";
+import React, {FC, ReactNode} from "react";
 import UserItem from "./UserItem/UserItem";
+import {IState} from "../../../Redux/state";
 
 
-const Users = () => {
-    let dialogsData:any = [{id:1, name:'Ilgiz'},
-        {id:2,name:'Pavel'},
-        {id:3,name:'Alena'},
-        {id:4,name:'Olga'},
-        {id:5,name:'Alexander'}
-    ];
+const Users:FC<IState> = (props) => {
 
 
-
-    let dialogComponent:any = dialogsData.map((elem: any) => {
+    let dialogComponent:ReactNode = props.dialogsData!.map((elem) => {
         return <UserItem name = {elem.name} id = {elem.id} />;
     })
 

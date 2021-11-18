@@ -1,21 +1,18 @@
 import React,{FC, PropsWithChildren} from "react";
 import Users from "./Users/Users";
 import Dialog__messages from "./DIalog__messages/Dialog__messages";
-import {typeObjectsMessagesData} from "../../../index";
+import {IState, propsApp} from "../../Redux/state";
+import {ObjectsMessageData} from "../../Redux/state";
 
-type Props = {
-    dataMessages:Array<typeObjectsMessagesData>
-}
-
-const Messages:FC<Props> = (props) => {
-    console.log(props.dataMessages)
+const Messages:FC<IState> = (props) => {
+console.log(props);
     return(
         <div className={'dialogs'}>
             <div className={'dialogs__users'}>
-                <Users />
+                <Users dialogsData={props.dialogsData} />
             </div>
             <div className={'dialogs__messages'}>
-                <Dialog__messages dataMessages={props.dataMessages} />
+                <Dialog__messages messagesData={props.messagesData} />
             </div>
         </div>
     )

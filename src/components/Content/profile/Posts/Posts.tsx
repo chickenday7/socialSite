@@ -1,16 +1,14 @@
-import React from "react";
+import React, {FC} from "react";
 import AddPosts from "./AddPosts/AddPosts";
 import AddedPosts from "./AddedPosts/AddedPosts";
+import {IState} from "../../../Redux/state";
+import {ObjectsPostsData} from "../../../Redux/state";
 
 
 
-const Posts = () => {
-    let dialogsData:any = [
-        {id:1, news:"the weather in St. Petersburg is suitable for studying",likeCount: 99},
-        {id:2,news:'tear and sword c:', likeCount: 2},
-        {id:3,news:'this is my first project on a react!', likeCount: 8},
-    ];
-    let dialogsComponent:any = dialogsData.map((elem:any) => {
+const Posts:FC<IState> = (props) => {
+
+    let dialogsComponent:React.ReactNode = props.postsData!.map((elem) => {
         return <AddedPosts news = {elem.news} like = {elem.likeCount} />
     });
 

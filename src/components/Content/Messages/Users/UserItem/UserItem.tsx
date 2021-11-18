@@ -1,10 +1,8 @@
 import React,{FC, PropsWithChildren} from "react";
 import {NavLink} from "react-router-dom";
+import {ObjectsDialogsData} from "../../../../Redux/state";
 
-type Props = {
-    name:string
-    id:string
-}
+
 let activeStyle:any = {             // тут надо спросить!!!!!!!!!!!!!!!!!!!//
     textDecoration: "none",
     color: "orange",
@@ -12,7 +10,7 @@ let activeStyle:any = {             // тут надо спросить!!!!!!!!!
 
 
 
-const UserItem:FC<Props> = (props:PropsWithChildren<Props>) =>{
+const UserItem:FC<ObjectsDialogsData> = (props) =>{
     return(
         <div className={'user'}>
             <div className={'user__name'}>
