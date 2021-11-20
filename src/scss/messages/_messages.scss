@@ -89,9 +89,36 @@
       flex-direction: row;
       padding: 10px 0 10px 25px;
       //border-top: black solid 1px;
-      &:nth-child(2){
+      &:nth-child(1){
         border-top: orange solid 3px;
       }
+    }
+    &__input{
+      display: flex;
+      flex-direction: row;
+      margin: 20px 10px;
+      height: 80px;
+      border: $gray solid 0.2px;
+      border-radius: 25px;
+      align-items: baseline;
+      & > textarea {
+        border: none;
+        outline: none;
+        font-family: Lexend-Medium;
+        margin: 7px 0 0 15px;
+        padding: 0;
+        color: $gray;
+        width: 95%;
+        height: 85%;
+        resize: none;
+      }
+    }
+    &__button{
+      display: flex;
+      flex-direction: row;
+      justify-content: end;
+      margin-right: 10px;
+      margin-bottom: 15px;
     }
 }
 

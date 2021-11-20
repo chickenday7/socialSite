@@ -5,7 +5,7 @@ type Props = {
 }
 
 
-const AllMessages__item: FC<Props> = (props) => {
+const AddedMessageItem: FC<Props> = (props) => {
     return (
         <div className={'allMessages__item'}>
             <div className={'blockMessage'}>
@@ -22,4 +22,4 @@ const AllMessages__item: FC<Props> = (props) => {
         </div>
     )
 }
-export default AllMessages__item;
+export default AddedMessageItem;

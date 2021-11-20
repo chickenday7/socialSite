@@ -1,31 +1,38 @@
 import React, {FC} from "react";
 import AddPosts from "./AddPosts/AddPosts";
-import AddedPosts from "./AddedPosts/AddedPosts";
-import {IState} from "../../../Redux/state";
-import {ObjectsPostsData} from "../../../Redux/state";
+import AddedPostsArrayPost from "./AddedPosts/AddedPostsArray";
+import AddedPostsArray from "./AddedPosts/AddedPostsArray";
+import PostsTitle from "./PostsTitile/PostsTitle";
 
 
 
-const Posts:FC<IState> = (props) => {
 
-    let dialogsComponent:React.ReactNode = props.postsData!.map((elem) => {
-        return <AddedPosts news = {elem.news} like = {elem.likeCount} />
-    });
-
+const Posts:any = (props:any) => {
+    console.log(props)
 
 
 
     return (
         <div className={'posts'}>
-            <div className={'posts__title'}>My posts</div>
-            <AddPosts />
-            <div className={'addedPosts'}>
-                {/*class posts__item*/}
-                {dialogsComponent}
-                {/*class posts__item*/}
-            </div>
+
+            {/*posts__title BOTTOM*/}
+            <PostsTitle />
+            {/*posts__title UP*/}
+
+
+            <AddPosts addPost = {props.addPost}
+                      newPostText = {props.profilePage.newPostText}
+                      updatePostText = {props.updatePostText}
+            />
+
+
+            {/*class posts__item*/}
+            <AddedPostsArray postsData={props.profilePage.postsData} />
+            {/*class posts__item*/}
+
         </div>
     )
+
 }
 
 export default Posts;

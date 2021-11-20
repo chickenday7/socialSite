@@ -1,17 +1,20 @@
 import React, {FC} from "react";
 import Posts from "./Posts/Posts"
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {IState} from "../../Redux/state";
+import ImageProfile from "./HeaderProfile/HeaderProfile";
 
 
-const Profile:FC<IState> = (props) => {
+const Profile:any = (props:any) => {
+
     return (
         <div className={'content'}>
-            <div className={'content__image'}>
-                {/*какая -то картинка*/}
-            </div>
+            <ImageProfile />
             <ProfileInfo />
-            <Posts postsData={props.postsData} />
+            <Posts
+                   addPost = {props.addPost}
+                   profilePage = {props.profilePage}
+                   updatePostText = {props.updatePostText}
+            />
         </div>
     )
 };

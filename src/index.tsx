@@ -1,21 +1,11 @@
 import React,{FC, PropsWithChildren} from 'react';
-import ReactDOM from 'react-dom';
 import './index.scss';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import state, {IState} from "./components/Redux/state";
+import {rerenderEntireTree} from "./render";
+import state from "./components/Redux/state";
+
+rerenderEntireTree(state);
 
 
-
-
-ReactDOM.render(
-
-   <App state = {state}  />,
-  document.getElementById('root')
-);
-
-
-reportWebVitals();
 
 
 

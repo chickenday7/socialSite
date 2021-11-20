@@ -1,11 +1,9 @@
 import React, {FC, PropsWithChildren} from "react";
 
-type Props = {
-    news:string,
-    like:number
-}
 
-const addedPosts:FC<Props> = (props:PropsWithChildren<Props>) =>{
+
+const AddedPostsItem:any = (props:any) =>{
+
     return(
         <div className={'posts__item'}>
             <div className={'patternPosts'}>
@@ -18,4 +16,4 @@ const addedPosts:FC<Props> = (props:PropsWithChildren<Props>) =>{
 }
 
 
-export default addedPosts;
+export default AddedPostsItem;
