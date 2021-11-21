@@ -1,6 +1,5 @@
 import React, {FC} from "react";
 import AddPosts from "./AddPosts/AddPosts";
-import AddedPostsArrayPost from "./AddedPosts/AddedPostsArray";
 import AddedPostsArray from "./AddedPosts/AddedPostsArray";
 import PostsTitle from "./PostsTitile/PostsTitle";
 
@@ -8,9 +7,6 @@ import PostsTitle from "./PostsTitile/PostsTitle";
 
 
 const Posts:any = (props:any) => {
-    console.log(props)
-
-
 
     return (
         <div className={'posts'}>

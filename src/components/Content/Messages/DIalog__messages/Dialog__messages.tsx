@@ -5,17 +5,18 @@ import AddedMessageArray from "./AddedMessageArray/AddedMessageArray";
 const Dialog__messages: any = (props: any) => {
 
 
+    let textAreaMessage: any = React.createRef()
 
-    let textAreaMessage:any = React.createRef()
-
-    let addMessage:any = () => {
+    let addMessage: any = () => {
         props.addMessage()
     }
 
-    let updateMessageText:any = () => {
-        let text:any = textAreaMessage.current.value;
+    let updateMessageText: any = () => {
+        let text: any = textAreaMessage.current.value;
         props.updateMessageText(text)
     }
+
+
 
 
 
@@ -27,7 +28,7 @@ const Dialog__messages: any = (props: any) => {
 
 
             {/*class = allMessages__item  BOTTOM*/}
-            <AddedMessageArray messagesData = {props.messagesData} />
+            <AddedMessageArray messagesData={props.messagesData}/>
             {/*class = allMessages__item  UP */}
 
 
@@ -36,12 +37,12 @@ const Dialog__messages: any = (props: any) => {
                     ref={textAreaMessage}
                     onChange={updateMessageText}
                     value={props.newMessageText}
-                ></textarea>
+                />
             </div>
             <div className={'allMessages__button'}>
-            <div onClick={addMessage} className={'button'}>
-                <div className={'button__text'}>Send</div>
-            </div>
+                <div onClick={addMessage} className={'button'}>
+                    <div className={'button__text'}>Send</div>
+                </div>
             </div>
         </div>
     )

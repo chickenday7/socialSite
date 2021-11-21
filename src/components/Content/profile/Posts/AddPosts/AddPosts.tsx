@@ -9,7 +9,6 @@ import React from "react";
 
 const AddPosts:any = (props:any) => {
 
-    console.log(props)
     let textAreaPost:any = React.createRef();
 
     let onPostChange:any = () =>{

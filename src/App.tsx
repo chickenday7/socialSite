@@ -13,6 +13,7 @@ import Profile from "./components/Content/profile/Profile";
 
 
 const App:any = (props:any) => {
+
     return (
         <BrowserRouter>
 
