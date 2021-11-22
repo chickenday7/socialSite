@@ -16,14 +16,15 @@ const Posts:any = (props:any) => {
             {/*posts__title UP*/}
 
 
-            <AddPosts addPost = {props.addPost}
-                      newPostText = {props.profilePage.newPostText}
-                      updatePostText = {props.updatePostText}
+            <AddPosts newPostText = {props.profilePage.newPostText}
+                      dispatch = {props.dispatch}
             />
 
 
             {/*class posts__item*/}
-            <AddedPostsArray postsData={props.profilePage.postsData} />
+            <AddedPostsArray postsData={props.profilePage.postsData}
+                             dispatch = {props.dispatch}
+            />
             {/*class posts__item*/}
 
         </div>

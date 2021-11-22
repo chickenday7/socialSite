@@ -1,11 +1,9 @@
 import React, {FC, PropsWithChildren} from "react";
 
-type Props = {
-    text: string
-}
 
 
-const AddedMessageItem: FC<Props> = (props) => {
+
+const AddedMessageItem: any = (props:any) => {
     return (
         <div className={'allMessages__item'}>
             <div className={'blockMessage'}>

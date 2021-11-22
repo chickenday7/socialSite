@@ -13,7 +13,6 @@ import Profile from "./components/Content/profile/Profile";
 
 
 const App:any = (props:any) => {
-
     return (
         <BrowserRouter>
 
@@ -27,8 +26,7 @@ const App:any = (props:any) => {
 
                         <Route path={"/profile/*"} element={<Profile
                             profilePage = {props.state.profilePage}
-                            addPost = {props.addPost}
-                            updatePostText = {props.updatePostText}
+                            dispatch = {props.dispatch}
                         />}
                         />
 
@@ -36,8 +34,7 @@ const App:any = (props:any) => {
                         <Route path={"/messages/*"} element={
                             <Messages
                             messagesPage = {props.state.messagesPage}
-                            addMessage = {props.addMessage}
-                            updateMessageText = {props.updateMessageText}
+                            dispatch = {props.dispatch}
 
                             />}
                         />

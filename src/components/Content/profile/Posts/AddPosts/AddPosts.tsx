@@ -1,4 +1,5 @@
 import React from "react";
+import {newPostAddActionCreator, newPostTextActionCreator} from "../../../../Redux/profileReducer";
 
 
 
@@ -8,17 +9,16 @@ import React from "react";
 
 
 const AddPosts:any = (props:any) => {
-
     let textAreaPost:any = React.createRef();
 
     let onPostChange:any = () =>{
         let text:any = textAreaPost.current.value
-        props.updatePostText(text)
+        props.dispatch(newPostTextActionCreator(text))
 
     }
 
     let buttonAddPost:any = () => {
-        props.addPost();
+        props.dispatch(newPostAddActionCreator());
     }
 
 

@@ -10,10 +10,8 @@ const Profile:any = (props:any) => {
         <div className={'content'}>
             <ImageProfile />
             <ProfileInfo />
-            <Posts
-                   addPost = {props.addPost}
-                   profilePage = {props.profilePage}
-                   updatePostText = {props.updatePostText}
+            <Posts profilePage = {props.profilePage}
+                   dispatch = {props.dispatch}
             />
         </div>
     )

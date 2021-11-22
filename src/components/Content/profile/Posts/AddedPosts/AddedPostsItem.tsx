@@ -1,15 +1,23 @@
 import React, {FC, PropsWithChildren} from "react";
+import {addLikeActionCreator} from "../../../../Redux/profileReducer";
 
 
 
 const AddedPostsItem:any = (props:any) =>{
+
+    let likeArea:any = React.createRef()
+
+    let addLike:any = () => {
+    let idMessage = likeArea.current.id;
+    props.dispatch(addLikeActionCreator(idMessage))
+    }
 
     return(
         <div className={'posts__item'}>
             <div className={'patternPosts'}>
                 <div className={'patternPosts__photo'}></div>
                 <div className={'patternPosts__text'}>{props.news}</div>
-                <div className={'patternPosts__like'}>like: {props.like}</div>
+                <div ref={likeArea} id={props.id} onClick={addLike} className={'patternPosts__like'}>like: {props.like}</div>
             </div>
         </div>
     )

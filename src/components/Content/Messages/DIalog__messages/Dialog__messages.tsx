@@ -1,5 +1,6 @@
 import React, {FC, PropsWithChildren} from "react";
 import AddedMessageArray from "./AddedMessageArray/AddedMessageArray";
+import {newMessageAddActionCreator, newMessageTextActionCreator} from "../../../Redux/messagesReducer";
 
 
 const Dialog__messages: any = (props: any) => {
@@ -8,12 +9,12 @@ const Dialog__messages: any = (props: any) => {
     let textAreaMessage: any = React.createRef()
 
     let addMessage: any = () => {
-        props.addMessage()
+        props.dispatch(newMessageAddActionCreator())
     }
 
     let updateMessageText: any = () => {
         let text: any = textAreaMessage.current.value;
-        props.updateMessageText(text)
+        props.dispatch(newMessageTextActionCreator(text))
     }
 
 

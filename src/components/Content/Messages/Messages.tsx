@@ -12,9 +12,8 @@ const Messages:any = (props:any) => {
             <div className={'dialogs__messages'}>
                 <Dialog__messages
                     messagesData={props.messagesPage.messagesData}
-                    addMessage = {props.addMessage}
                     newMessageText = {props.messagesPage.newMessageText}
-                    updateMessageText = {props.updateMessageText}
+                    dispatch = {props.dispatch}
                 />
             </div>
         </div>
