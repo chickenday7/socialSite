@@ -17,13 +17,14 @@ const Posts:any = (props:any) => {
 
 
             <AddPosts newPostText = {props.profilePage.newPostText}
-                      dispatch = {props.dispatch}
+                      postChange = {props.postChange}
+                      addPost = {props.addPost}
             />
 
 
             {/*class posts__item*/}
             <AddedPostsArray postsData={props.profilePage.postsData}
-                             dispatch = {props.dispatch}
+                             addLike = {props.addLike}
             />
             {/*class posts__item*/}
 

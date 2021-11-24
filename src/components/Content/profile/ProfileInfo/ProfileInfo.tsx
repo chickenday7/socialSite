@@ -5,7 +5,7 @@ const ProfileInfo = () => {
     return (
         <div className={'profile'} >
             <div className={'profile__photo'}></div>
-            <div className={'description'}>Description</div>
+            <div className={'descriptionProfile'}>Description</div>
         </div>
     )
 }

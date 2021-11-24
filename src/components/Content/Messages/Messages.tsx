@@ -13,7 +13,8 @@ const Messages:any = (props:any) => {
                 <Dialog__messages
                     messagesData={props.messagesPage.messagesData}
                     newMessageText = {props.messagesPage.newMessageText}
-                    dispatch = {props.dispatch}
+                    addMessage = {props.addMessage}
+                    updateMessageText = {props.updateMessageText}
                 />
             </div>
         </div>

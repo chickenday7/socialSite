@@ -13,12 +13,12 @@ const AddPosts:any = (props:any) => {
 
     let onPostChange:any = () =>{
         let text:any = textAreaPost.current.value
-        props.dispatch(newPostTextActionCreator(text))
+        props.postChange(text)
 
     }
 
-    let buttonAddPost:any = () => {
-        props.dispatch(newPostAddActionCreator());
+    let onAddPost:any = () => {
+        props.addPost()
     }
 
 
@@ -37,7 +37,7 @@ const AddPosts:any = (props:any) => {
 
 
             <div className={'addPosts__button'}>
-                <div onClick={buttonAddPost} className={'button'}>
+                <div onClick={onAddPost} className={'button'}>
                     <div className={'button__text'}>Send</div>
                 </div>
             </div>

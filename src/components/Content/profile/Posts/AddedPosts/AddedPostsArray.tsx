@@ -9,7 +9,8 @@ const AddedPostsArray:any = (props:any) => {
         return  <AddedPostsItem news = {elem.news}
                                 like = {elem.likeCount}
                                 id={elem.id}
-                                dispatch = {props.dispatch}
+                                addLike = {props.addLike}
+                                key = {elem.id}
 
         />
     });

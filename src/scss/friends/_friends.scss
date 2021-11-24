@@ -1,0 +1,95 @@
+.myFriends {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-areas:
+  "title title title"
+  "list list filter";
+  grid-template-rows: 30px 1fr;
+
+  &__title {
+    grid-area: title;
+    font-family: 'Lexend-Semibold';
+    font-size: 28px;
+    color: $gray;
+    letter-spacing: 1px;
+  }
+
+  &__list {
+    grid-area: list;
+    display: flex;
+    flex-direction: column;
+    border: black solid 1px;
+    margin-top: 15px;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__filter {
+    grid-area: filter;
+    border: black solid 1px;
+    margin-left: 15px;
+    margin-top: 15px;
+  }
+}
+
+.blockFriend {
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+  //border-bottom: black solid 1px;
+  align-items: center;
+  flex-grow: 1;
+
+  &__photo {
+    border: black solid 1px;
+    border-radius: 80px;
+    width: 80px;
+    height: 80px;
+    background-color: blue;
+  }
+
+  &__description {
+    padding-left: 20px;
+    display: grid;
+    width: 70%;
+    height: 100%;
+    grid-template-areas:
+    'name name name name'
+    'stat stat stat country'
+    'stat stat stat city'
+  }
+  &__button{
+    margin-left: auto;
+  }
+}
+.description{
+  &__name{
+    grid-area: name;
+    font-family: Lexend-Medium;
+    color: $gray;
+  }
+  &__stat{
+    grid-area: stat;
+    font-family: Lexend-Regular;
+    color: $gray;
+  }
+  &__country{
+    grid-area: country;
+    justify-self: end;
+    align-self:start;
+    font-family: Lexend-Medium;
+    color: $gray;
+  }
+  &__city{
+    justify-self:end;
+    grid-area: city;
+    align-self: start;
+    font-family: Lexend-Medium;
+    color: $gray;
+
+  }
+}
+.buttonAdd{
+  @include buttonAdd;
+}

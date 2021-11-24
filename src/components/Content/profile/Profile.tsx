@@ -1,7 +1,7 @@
 import React, {FC} from "react";
-import Posts from "./Posts/Posts"
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import ImageProfile from "./HeaderProfile/HeaderProfile";
+import PostsContainer from "./Posts/PostsContainer";
 
 
 const Profile:any = (props:any) => {
@@ -10,8 +10,7 @@ const Profile:any = (props:any) => {
         <div className={'content'}>
             <ImageProfile />
             <ProfileInfo />
-            <Posts profilePage = {props.profilePage}
-                   dispatch = {props.dispatch}
+            <PostsContainer
             />
         </div>
     )

@@ -1,4 +1,3 @@
-
 const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
 const ADD_POST = 'ADD-POST';
 const ADD_LIKE = 'ADD_LIKE'
@@ -16,25 +15,36 @@ let initialState = {
 }
 
 
-const profileReducer = (state:any = initialState, action:any) => {
+const profileReducer = (state: any = initialState, action: any) => {
+
     switch (action.type) {
         case ADD_POST:
-            let newPost: any = {
-                id: state.postsData.length + 1,
-                news: state.newPostText,
-                likeCount: 0
+            return  {
+                ...state,
+                postsData: [...state.postsData,
+                    {
+                        id: state.postsData.length + 1,
+                        news: state.newPostText,
+                        likeCount: 0
+                    }],
+                newPostText: ''
             }
-            state.postsData.push(newPost);
-            state.newPostText = '';
-            break;
         case UPDATE_POST_TEXT:
-            state.newPostText = action.postText
-            break;
+            return  {
+                ...state,
+                newPostText: action.postText
+            }
+
         case ADD_LIKE:
-            state.postsData[action.id - 1].likeCount += 1;
-            break;
+            return  {
+                ...state,
+                postsData: [...state.postsData[action.id - 1].likeCount += 1]
+            }
+        default:
+            return state
     }
-    return state;
+
+
 }
 
 export default profileReducer;
@@ -46,16 +56,15 @@ export const newPostTextActionCreator: any = (text: any) => {
     }
 }
 
-export const newPostAddActionCreator:any = () => {
+export const newPostAddActionCreator: any = () => {
     return {
         type: ADD_POST
     }
 }
 
-export const addLikeActionCreator = (id:any) => {
+export const addLikeActionCreator = (id: any) => {
     return {
         type: ADD_LIKE,
         id: id
-
     }
 }

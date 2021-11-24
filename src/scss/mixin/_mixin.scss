@@ -18,6 +18,24 @@
     margin: 0;
   }
 }
+@mixin buttonAdd() {
+  width: 106px;
+  height: 51px;
+  cursor: pointer;
+  background-color: white;
+  border: $gray solid 1px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__text{
+    font-family: "Lexend-Regular";
+    color: $gray;
+    font-weight: 500;
+    font-size: 14px;
+    margin: 0;
+  }
+}
 
 @mixin patternPosts{
   display: flex;

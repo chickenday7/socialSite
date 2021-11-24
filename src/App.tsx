@@ -2,10 +2,11 @@ import React,{FC, PropsWithChildren} from 'react';
 import './scss/App.scss';
 import Header from "./components/Header/Header";
 import Navigation from "./components/Navigation/Navigation";
-import Messages from "./components/Content/Messages/Messages";
 import {BrowserRouter, Route, Link, Routes} from "react-router-dom";
 import Profile from "./components/Content/profile/Profile";
-
+import MessagesContainer from "./components/Content/Messages/MessagesContainer";
+import News from "./News";
+import Friends from "./components/Content/Friends/Friends";
 
 
 
@@ -14,8 +15,6 @@ import Profile from "./components/Content/profile/Profile";
 
 const App:any = (props:any) => {
     return (
-        <BrowserRouter>
-
             <div className={'app-wrapper'}>
                 <Header/>
                 <Navigation/>
@@ -24,7 +23,7 @@ const App:any = (props:any) => {
                         {/*<Route path={"/*"} element={<Profile/>}/>*/}
 
 
-                        <Route path={"/profile/*"} element={<Profile
+                        <Route path={"/profile"} element={<Profile
                             profilePage = {props.state.profilePage}
                             dispatch = {props.dispatch}
                         />}
@@ -32,17 +31,15 @@ const App:any = (props:any) => {
 
 
                         <Route path={"/messages/*"} element={
-                            <Messages
-                            messagesPage = {props.state.messagesPage}
-                            dispatch = {props.dispatch}
+                            <MessagesContainer
 
                             />}
                         />
+                        <Route path = {"/friends/*"} element = {<Friends />} />
+                        <Route path={"/news/*"} element={<News />}/>
                     </Routes>
                 </div>
             </div>
-
-        </BrowserRouter>
     );
 }
 

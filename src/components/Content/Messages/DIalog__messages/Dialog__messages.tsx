@@ -1,6 +1,5 @@
 import React, {FC, PropsWithChildren} from "react";
 import AddedMessageArray from "./AddedMessageArray/AddedMessageArray";
-import {newMessageAddActionCreator, newMessageTextActionCreator} from "../../../Redux/messagesReducer";
 
 
 const Dialog__messages: any = (props: any) => {
@@ -8,13 +7,13 @@ const Dialog__messages: any = (props: any) => {
 
     let textAreaMessage: any = React.createRef()
 
-    let addMessage: any = () => {
-        props.dispatch(newMessageAddActionCreator())
+    let onAddMessage: any = () => {
+        props.addMessage()
     }
 
-    let updateMessageText: any = () => {
+    let onUpdateMessageText: any = () => {
         let text: any = textAreaMessage.current.value;
-        props.dispatch(newMessageTextActionCreator(text))
+        props.updateMessageText(text)
     }
 
 
@@ -36,12 +35,12 @@ const Dialog__messages: any = (props: any) => {
             <div className={'allMessages__input'}>
                 <textarea
                     ref={textAreaMessage}
-                    onChange={updateMessageText}
+                    onChange={onUpdateMessageText}
                     value={props.newMessageText}
                 />
             </div>
             <div className={'allMessages__button'}>
-                <div onClick={addMessage} className={'button'}>
+                <div onClick={onAddMessage} className={'button'}>
                     <div className={'button__text'}>Send</div>
                 </div>
             </div>

@@ -7,7 +7,7 @@ const Users:any = (props:any) => {
 
 
     let dialogComponent:any = props.dialogsData!.map((elem:any) => {
-        return <UserItem name = {elem.name} id = {elem.id} />;
+        return <UserItem name = {elem.name} id = {elem.id} key={ elem.id} />;
     })
 
 
