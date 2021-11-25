@@ -6,7 +6,7 @@ import {BrowserRouter, Route, Link, Routes} from "react-router-dom";
 import Profile from "./components/Content/profile/Profile";
 import MessagesContainer from "./components/Content/Messages/MessagesContainer";
 import News from "./News";
-import Friends from "./components/Content/Friends/Friends";
+import FriendsContainer from "./components/Content/Friends/FriendsContainer";
 
 
 
@@ -21,22 +21,10 @@ const App:any = (props:any) => {
                 <div className={'app-wrapper__content'}>
                     <Routes>
                         {/*<Route path={"/*"} element={<Profile/>}/>*/}
-
-
-                        <Route path={"/profile"} element={<Profile
-                            profilePage = {props.state.profilePage}
-                            dispatch = {props.dispatch}
-                        />}
-                        />
-
-
-                        <Route path={"/messages/*"} element={
-                            <MessagesContainer
-
-                            />}
-                        />
-                        <Route path = {"/friends/*"} element = {<Friends />} />
-                        <Route path={"/news/*"} element={<News />}/>
+                        <Route path={"/profile"} element={<Profile/>} />
+                        <Route path={"/messages/*"} element={<MessagesContainer/>} />
+                        <Route path = {"/friends/*"} element = {<FriendsContainer />} />
+                        {/*<Route path={"/news/*"} element={<News />}/>*/}
                     </Routes>
                 </div>
             </div>

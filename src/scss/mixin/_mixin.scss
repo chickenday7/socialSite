@@ -8,6 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  user-select: none;
   &__text{
     font-family: "Lexend-Medium";
     color: $gray;
@@ -28,6 +29,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  user-select: none;
   &__text{
     font-family: "Lexend-Regular";
     color: $gray;

@@ -5,9 +5,7 @@ import FriendsFilter from "./FriendFilter/FriendsFilter";
 
 
 
-const Friends = () =>{
-
-
+const Friends = (props:any) =>{
     return(
         <div className={'myFriends'}>
 
@@ -16,7 +14,11 @@ const Friends = () =>{
             {/*myFriends__title*/}
 
             {/*myFriends__list*/}
-            <FriendsList />
+            <FriendsList friendsPage = {props.friendsPage}
+                         follow = {props.follow}
+                         unfollow = {props.unfollow}
+                         setUsers = {props.setUsers}
+            />
             {/*myFriends__list*/}
 
             {/*myFriends__filter*/}

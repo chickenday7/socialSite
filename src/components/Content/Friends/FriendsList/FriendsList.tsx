@@ -1,29 +1,36 @@
 import React from "react";
+import FriendsItem from "./FriendsItem/FriendsItem";
+import  axios from "axios";
 
 
-const FriendsList = () => {
+const FriendsList = (props:any) => {
 
+    if (props.friendsPage.length === 0){
+        axios.get("https://social-network.samuraijs.com/api/1.0/users",{
+            headers: {
+                'API-KEY':'8c93655a-bf70-40c8-9c2a-4929b88b2e49'
+            }
+        }).then(response => {
+            debugger;
+        })
+    }
+
+
+    let friendsList:any = props.friendsPage.map((elem:any) => {
+        return <FriendsItem name = {elem.name}
+                            status = {elem.status}
+                            location = {elem.location}
+                            followed = {elem.followed}
+                            id = {elem.id}
+                            follow = {props.follow}
+                            unfollow = {props.unfollow}
+
+        />
+    })
 
     return (
         <div className={'myFriends__list'}>
-            <div className={'blockFriend'}>
-                <div className={'blockFriend__photo'}>
-
-                </div>
-                <div className={'blockFriend__description'}>
-                    <div className={'description__name'}>Pavel Permyakov</div>
-                    <div className={'description__stat'}>All FINE!</div>
-                    <div className={'description__country'}>Russia</div>
-                    <div className={'description__city'}>St.Petersburg</div>
-                </div>
-                <div className={'blockFriend__button'}>
-                    <div className={'buttonAdd'}>
-                        <div className={'buttonAdd__text'}>
-                            FOLLOW
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {friendsList}
         </div>
 
 

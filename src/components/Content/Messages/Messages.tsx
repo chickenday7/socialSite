@@ -4,6 +4,7 @@ import Dialog__messages from "./DIalog__messages/Dialog__messages";
 
 
 const Messages:any = (props:any) => {
+    console.log(props)
     return(
         <div className={'dialogs'}>
             <div className={'dialogs__users'}>
