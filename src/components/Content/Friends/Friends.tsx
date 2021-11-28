@@ -18,6 +18,11 @@ const Friends = (props:any) =>{
                          follow = {props.follow}
                          unfollow = {props.unfollow}
                          setUsers = {props.setUsers}
+                         pageSize = {props.pageSize}
+                         totalUsers = {props.totalUsers}
+                         currentPage = {props.currentPage}
+                         updatePage = {props.updatePage}
+                         setCountUsers ={props.setCountUsers}
             />
             {/*myFriends__list*/}
 

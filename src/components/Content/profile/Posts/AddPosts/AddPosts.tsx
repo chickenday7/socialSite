@@ -2,25 +2,23 @@ import React from "react";
 import {newPostAddActionCreator, newPostTextActionCreator} from "../../../../Redux/profileReducer";
 
 
+const AddPosts: any = (props: any) => {
+    let textAreaPost: any = React.createRef();
 
-
-
-
-
-
-const AddPosts:any = (props:any) => {
-    let textAreaPost:any = React.createRef();
-
-    let onPostChange:any = () =>{
-        let text:any = textAreaPost.current.value
+    let onPostChange: any = () => {
+        let text: any = textAreaPost.current.value
         props.postChange(text)
 
     }
 
-    let onAddPost:any = () => {
-        props.addPost()
-    }
+    let onAddPost: any = () => {
+        if (props.newPostText.trim() === '' || props.newPostText.trim() === ' ') {
+            alert('Пустое сообщение')
+        } else {
+            props.addPost()
+        }
 
+    }
 
 
     return (
@@ -41,7 +39,6 @@ const AddPosts:any = (props:any) => {
                     <div className={'button__text'}>Send</div>
                 </div>
             </div>
-
 
 
         </div>

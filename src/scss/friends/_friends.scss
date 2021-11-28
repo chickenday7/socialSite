@@ -21,7 +21,7 @@
     flex-direction: column;
     border: black solid 1px;
     margin-top: 15px;
-    width: 100%;
+    width: 755px;
     height: 100%;
     margin-bottom: 75px;
   }
@@ -32,6 +32,7 @@
     margin-left: 15px;
     margin-top: 15px;
     height: 500px;
+    width: 222px;
   }
 }
 
@@ -42,6 +43,8 @@
   //border-bottom: black solid 1px;
   align-items: center;
   flex-grow: 1;
+  max-width:740px;
+  max-height: 106.44px;
 
   &__photo {
     border: black solid 1px;
@@ -99,4 +102,31 @@
 }
 .buttonAdd{
   @include buttonAdd;
+}
+.activePage{
+  font-weight: bold;
+  cursor: pointer;
+  color: orange;
+  font-family: Lexend-Regular;
+  font-size: 24px;
+}
+.disabledPage{
+  font-size: 18px;
+  cursor: pointer;
+  padding: 0 5px;
+  font-family: Lexend-Regular;
+  color: $gray;
+}
+
+.pages{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 40px;
+  align-items: center;
+  &__points {
+    font-size: 18px;
+    font-family: Lexend-Regular;
+    color: $gray;
+  }
 }
