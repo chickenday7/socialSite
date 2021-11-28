@@ -1,0 +1,12 @@
+.preloader {
+  display: flex;
+  margin: auto auto;
+  align-items: center;
+  justify-content: center;
+
+  &__text {
+    font-family: Lexend-Semibold;
+    font-size: 28px;
+    color: $gray;
+  }
+}

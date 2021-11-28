@@ -1,7 +1,7 @@
 import React from "react";
 import FriendsTitle from "./FriendsTitle/FriendsTitle";
-import FriendsList from "./FriendsList/FriendsList";
 import FriendsFilter from "./FriendFilter/FriendsFilter";
+import FriendsListContainer from "./FriendsList/FriendListContainer";
 
 
 
@@ -14,15 +14,7 @@ const Friends = (props:any) =>{
             {/*myFriends__title*/}
 
             {/*myFriends__list*/}
-            <FriendsList friendsPage = {props.friendsPage}
-                         follow = {props.follow}
-                         unfollow = {props.unfollow}
-                         setUsers = {props.setUsers}
-                         pageSize = {props.pageSize}
-                         totalUsers = {props.totalUsers}
-                         currentPage = {props.currentPage}
-                         updatePage = {props.updatePage}
-                         setCountUsers ={props.setCountUsers}
+            <FriendsListContainer
             />
             {/*myFriends__list*/}
 
@@ -30,6 +22,15 @@ const Friends = (props:any) =>{
             <FriendsFilter />
             {/*myFriends__filter*/}
         </div>
+    //    friendsPage = {props.friendsPage}
+        //                             follow = {props.follow}
+        //                             unfollow = {props.unfollow}
+        //                             setUsers = {props.setUsers}
+        //                             pageSize = {props.pageSize}
+        //                             totalUsers = {props.totalUsers}
+        //                             currentPage = {props.currentPage}
+        //                             updatePage = {props.updatePage}
+        //                             setCountUsers ={props.setCountUsers}
     )
 }
 

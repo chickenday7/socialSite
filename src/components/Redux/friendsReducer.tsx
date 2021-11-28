@@ -3,17 +3,19 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = "SET_USERS"
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_USERS = 'SET_TOTAL_USERS'
+const TOGGLE_PRELOADER = 'TOGGLE_PRELOADER'
 
 let initialState = {
     users: [],
-    totalUsers: 150,
+    totalUsers: 0,
     pageSize: 10,
-    currentPage: 4
+    currentPage: 1,
+    isPreloader: false
 }
 
 
 const friendsReducer = (state: any = initialState, action: any) => {
-    debugger;
+
     switch (action.type) {
         case FOLLOW:
             return {
@@ -61,9 +63,24 @@ const friendsReducer = (state: any = initialState, action: any) => {
                 totalUsers: action.totalUsers
             }
         }
+        case TOGGLE_PRELOADER: {
+            return {
+                ...state,
+                isPreloader: action.isPreloader
+
+
+
+            }
+        }
         default:
             return state;
 
+    }
+}
+export const togglePreloaderAC = (actionPreloader:any) =>{
+    return {
+        type: TOGGLE_PRELOADER,
+        isPreloader: actionPreloader
     }
 }
 export const totalUsersAC = (totalUsers:any) => {

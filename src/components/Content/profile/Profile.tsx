@@ -10,8 +10,7 @@ const Profile:any = (props:any) => {
         <div className={'content'}>
             <ImageProfile />
             <ProfileInfo />
-            <PostsContainer
-            />
+            <PostsContainer/>
         </div>
     )
 };

@@ -1,5 +1,4 @@
 import React from "react";
-import {newPostAddActionCreator, newPostTextActionCreator} from "../../../../Redux/profileReducer";
 
 
 const AddPosts: any = (props: any) => {
