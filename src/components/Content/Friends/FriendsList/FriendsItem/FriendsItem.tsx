@@ -1,8 +1,8 @@
 import React from "react";
+import userPhoto from "../../../../../img/user/user.png"
 
 
 const FriendsItem = (props: any) => {
-    console.log(props.id)
     let onUnfollow = () => {
         props.unfollow(props.id)
     }
@@ -10,17 +10,16 @@ const FriendsItem = (props: any) => {
         props.follow(props.id)
     }
 
-
     return (
-        <div className={'blockFriend'}>
+        <div key = {props.id} className={'blockFriend'}>
             <div className={'blockFriend__photo'}>
-
+                <img src={props.photo.small != null ? props.photo.small : userPhoto} />
             </div>
             <div className={'blockFriend__description'}>
-                <div className={'description__name'}>{props.name.firstName} {props.name.lastName}</div>
+                <div className={'description__name'}>{props.name} </div>
                 <div className={'description__stat'}>{props.status}</div>
-                <div className={'description__country'}>{props.location.country}</div>
-                <div className={'description__city'}>{props.location.city}</div>
+                <div className={'description__country'}>Country</div>
+                <div className={'description__city'}>City</div>
             </div>
             <div className={'blockFriend__button'}>
                 {props.followed ?

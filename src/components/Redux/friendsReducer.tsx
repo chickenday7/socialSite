@@ -3,7 +3,10 @@ const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = "SET_USERS"
 
 let initialState = {
-    users: []
+    users: [],
+    totalUsers: 0,
+    pageSize:0,
+    currentPage: 1
 }
 
 
