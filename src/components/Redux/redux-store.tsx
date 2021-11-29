@@ -13,7 +13,6 @@ let reducer:any = combineReducers({
 
 
 
-
 export let store:any = createStore(reducer)
 
 

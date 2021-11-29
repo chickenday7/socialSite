@@ -25,7 +25,6 @@ class FriendsListAPI extends React.Component<any, any> {
                 'API-KEY': '8c93655a-bf70-40c8-9c2a-4929b88b2e49'
             }
         }).then(response => {
-
             this.props.setUsers(response.data.items);
             this.props.setCountUsers(response.data.totalCount);
             this.props.togglePreloader(false)

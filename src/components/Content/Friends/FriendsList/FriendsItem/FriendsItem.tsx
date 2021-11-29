@@ -1,5 +1,6 @@
 import React from "react";
 import userPhoto from "../../../../../img/user/user.png"
+import {NavLink} from "react-router-dom";
 
 
 const FriendsItem = (props: any) => {
@@ -12,9 +13,10 @@ const FriendsItem = (props: any) => {
 
     return (
         <div key = {props.id} className={'blockFriend'}>
-            <div className={'blockFriend__photo'}>
+           <NavLink to={'/profile/' + props.id}> <div className={'blockFriend__photo'}>
                 <img src={props.photo.small != null ? props.photo.small : userPhoto} />
             </div>
+           </NavLink>
             <div className={'blockFriend__description'}>
                 <div className={'description__name'}>{props.name} </div>
                 <div className={'description__stat'}>{props.status}</div>

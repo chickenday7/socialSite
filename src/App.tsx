@@ -18,7 +18,7 @@ const App:any = (props:any) => {
                 <div className={'app-wrapper__content'}>
                     <Routes>
                         {/*<Route path={"/*"} element={<Profile/>}/>*/}
-                        <Route path={"/profile"} element={<ProfileContainer/>} />
+                        <Route path={"/profile/:userId"} element={<ProfileContainer/>} />
                         <Route path={"/messages/*"} element={<MessagesContainer/>} />
                         <Route path = {"/friends/*"} element = {<Friends />} />
                         {/*<Route path={"/news/*"} element={<News />}/>*/}
