@@ -1,11 +1,22 @@
-import React from 'react';
+import React from "react";
+import {NavLink} from "react-router-dom";
 
-const Header = () => {
+
+const Header = (props: any) => {
     return (
         <header className={'header'}>
-            <div> </div>
-            <div></div>
+            <div className={'header__logo'}>logo</div>
+            <div className={'header__profile'}>
+                {props.auth.isAuth === true
+                    ? props.auth.login
+                    : <NavLink to={'/login'}>Login</NavLink>}
+
+            </div>
         </header>
     )
-};
-export default  Header
+
+
+}
+
+
+export default Header

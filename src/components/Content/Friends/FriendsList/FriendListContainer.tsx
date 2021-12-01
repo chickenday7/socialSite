@@ -23,7 +23,8 @@ class FriendsListAPI extends React.Component<any, any> {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
             headers: {
                 'API-KEY': '8c93655a-bf70-40c8-9c2a-4929b88b2e49'
-            }
+            },
+            withCredentials:true
         }).then(response => {
             this.props.setUsers(response.data.items);
             this.props.setCountUsers(response.data.totalCount);
@@ -39,7 +40,8 @@ class FriendsListAPI extends React.Component<any, any> {
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${newCurrentPage}&count=${this.props.pageSize}`, {
             headers: {
                 'API-KEY': '8c93655a-bf70-40c8-9c2a-4929b88b2e49'
-            }
+            },
+            withCredentials: true
         }).then(response => {
 
             this.props.setUsers(response.data.items);

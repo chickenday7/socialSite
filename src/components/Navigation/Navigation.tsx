@@ -31,7 +31,7 @@ const Navigation = () => {
         <nav className={'nav'}>
             <ul>
                 <li className={'nav__elem'}>
-                    <NavLink to="/profile" style = {({ isActive }) =>
+                    <NavLink to="/profile/21021" style = {({ isActive }) =>
                         isActive ? activeStyle : undefined
                     } >Profile</NavLink>
                 </li>
