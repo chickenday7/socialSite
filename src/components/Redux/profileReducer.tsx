@@ -1,3 +1,5 @@
+import {profileAPI, usersAPI} from "../../API/api";
+
 const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
 const ADD_POST = 'ADD-POST';
 const ADD_LIKE = 'ADD_LIKE';
@@ -54,6 +56,17 @@ const profileReducer = (state: any = initialState, action: any) => {
 }
 
 export default profileReducer;
+
+export const getProfileThunkCreator = (usersID:any) => {
+    return (dispatch:any) => {
+        profileAPI.getProfile(usersID)
+            .then((response:any) => {
+                dispatch(setProfileUserAC(response.data))
+            })
+    }
+}
+
+
 
 export const setProfileUserAC:any = (objProfile:any) => {
     return {

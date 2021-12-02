@@ -2,14 +2,11 @@ import React from "react";
 
 import {connect} from "react-redux";
 import {
-    followAC,
-    newPageAC,
-    setUsersAC,
-    togglePreloaderAC,
-    totalUsersAC,
-    unFollowAC
+    changePageThunkCreator,
+    followThunkCreator,
+    getUsersThunkCreator,
+    unfollowThunkCreator
 } from "../../../Redux/friendsReducer";
-import axios from "axios";
 import FriendList from "./FriendList";
 
 
@@ -19,39 +16,16 @@ class FriendsListAPI extends React.Component<any, any> {
     }
 
     componentDidMount() {
-        this.props.togglePreloader(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {
-            headers: {
-                'API-KEY': '8c93655a-bf70-40c8-9c2a-4929b88b2e49'
-            },
-            withCredentials:true
-        }).then(response => {
-            this.props.setUsers(response.data.items);
-            this.props.setCountUsers(response.data.totalCount);
-            this.props.togglePreloader(false)
-
-        });
-
+        this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
     onCurrentPage = (newCurrentPage: any) => {
-        this.props.updatePage(newCurrentPage);
-        this.props.togglePreloader(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${newCurrentPage}&count=${this.props.pageSize}`, {
-            headers: {
-                'API-KEY': '8c93655a-bf70-40c8-9c2a-4929b88b2e49'
-            },
-            withCredentials: true
-        }).then(response => {
-
-            this.props.setUsers(response.data.items);
-            this.props.togglePreloader(false);
-        });
-
+        this.props.changePage(newCurrentPage, this.props.pageSize)
     }
 
 
     render() {
+        console.log(this.props)
         let pagesCount = Math.ceil(this.props.totalUsers / this.props.pageSize);
         let arrayCount = [];
         for (let i = 1; i <= pagesCount; i++) {
@@ -63,9 +37,10 @@ class FriendsListAPI extends React.Component<any, any> {
                         onCurrentPage={this.onCurrentPage}
                         friendsPage={this.props.friendsPage}
                         currentPage={this.props.currentPage}
-                        follow={this.props.follow}
-                        unfollow={this.props.unfollow}
                         isPreloader={this.props.isPreloader}
+                        isFollowing={this.props.isFollowing}
+                        follow = {this.props.follow}
+                        unfollow={this.props.unfollow}
             />
         )
     }
@@ -77,29 +52,24 @@ let mapStateToProps = (state: any) => {
         friendsPage: state.friendsPage.users,
         totalUsers: state.friendsPage.totalUsers,
         currentPage: state.friendsPage.currentPage,
-        isPreloader: state.friendsPage.isPreloader
+        isPreloader: state.friendsPage.isPreloader,
+        isFollowing: state.friendsPage.isFollowing
     }
 }
 
 let mapDispatchToProps = (dispatch: any) => {
     return {
-        follow: (id: any) => {
-            dispatch(followAC(id))
+        getUsers: (currentPage: any, pageSize: any) => {
+            dispatch(getUsersThunkCreator(currentPage, pageSize))
         },
-        unfollow: (id: any) => {
-            dispatch(unFollowAC(id))
+        changePage: (newCurrentPage: any, pageSize: any) => {
+            dispatch(changePageThunkCreator(newCurrentPage, pageSize))
         },
-        setUsers: (newArrayUsers: any) => {
-            dispatch(setUsersAC(newArrayUsers))
+        follow: (id:any) => {
+            dispatch(followThunkCreator(id))
         },
-        updatePage: (newCurrentPage: any) => {
-            dispatch(newPageAC(newCurrentPage))
-        },
-        setCountUsers: (setTotalUsers: any) => {
-            dispatch(totalUsersAC(setTotalUsers))
-        },
-        togglePreloader: (actionPreloader: any) => {
-            dispatch(togglePreloaderAC(actionPreloader))
+        unfollow: (id:any) => {
+            dispatch(unfollowThunkCreator(id))
         }
     }
 }

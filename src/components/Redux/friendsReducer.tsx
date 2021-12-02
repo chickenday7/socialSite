@@ -1,21 +1,25 @@
+import {subscribeAPI, usersAPI} from "../../API/api";
+
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
 const SET_USERS = "SET_USERS"
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_USERS = 'SET_TOTAL_USERS'
 const TOGGLE_PRELOADER = 'TOGGLE_PRELOADER'
+const TOGGLE_FOLLOWING = 'TOGGLE_FOLLOWING'
 
 let initialState = {
     users: [],
     totalUsers: 0,
     pageSize: 20,
     currentPage: 1,
-    isPreloader: false
+    isPreloader: false,
+    isFollowing: []
 }
 
 
 const friendsReducer = (state: any = initialState, action: any) => {
-
+    debugger;
     switch (action.type) {
         case FOLLOW:
             return {
@@ -67,9 +71,14 @@ const friendsReducer = (state: any = initialState, action: any) => {
             return {
                 ...state,
                 isPreloader: action.isPreloader
-
-
-
+            }
+        }
+        case TOGGLE_FOLLOWING: {
+            return {
+                ...state,
+                isFollowing: state.isPreloader === true
+                    ? [...state.isFollowing, action.id]
+                    : [...state.isFollowing.filter((id: any) => id != action.id)]
             }
         }
         default:
@@ -77,16 +86,82 @@ const friendsReducer = (state: any = initialState, action: any) => {
 
     }
 }
-export const togglePreloaderAC = (actionPreloader:any) =>{
+
+export const getUsersThunkCreator = (currentPage: any, pageSize: any) => {
+    return (dispatch: any) => {
+        dispatch(togglePreloaderAC(true));
+        usersAPI.getUsers(currentPage, pageSize)
+            .then((response: { items: any; totalCount: any; }) => {
+                dispatch(setUsersAC(response.items));
+                dispatch(totalUsersAC(response.totalCount));
+                dispatch(togglePreloaderAC(false));
+            });
+    }
+}
+export const changePageThunkCreator = (newCurrentPage: any, pageSize: any) => {
+    return (dispatch: any) => {
+        dispatch(newPageAC(newCurrentPage));
+        dispatch(togglePreloaderAC(true));
+        usersAPI.getUsers(newCurrentPage, pageSize).then((response: { items: any; }) => {
+
+            dispatch(setUsersAC(response.items));
+            dispatch(togglePreloaderAC(false));
+        });
+    }
+}
+
+export const followThunkCreator = (id: any) => {
+    debugger;
+    return (dispatch: any) => {
+        dispatch(togglePreloaderAC(true));
+        dispatch(toggleFollowingAC(id))
+        subscribeAPI.follow(id)
+            .then((data: any) => {
+                if (data.resultCode === 0) {
+                    dispatch(followAC(id))
+                }
+                dispatch(togglePreloaderAC(false))
+                dispatch(toggleFollowingAC(id))
+            })
+
+
+    }
+}
+export const unfollowThunkCreator = (id: any) => {
+    return (dispatch: any) => {
+        dispatch(togglePreloaderAC(true));
+        dispatch(toggleFollowingAC(id))
+        subscribeAPI.unfollow(id)
+            .then((data: any) => {
+                if (data.resultCode === 0) {
+                    dispatch(followAC(id))
+                }
+                dispatch(togglePreloaderAC(false))
+                dispatch(toggleFollowingAC(id))
+            })
+
+
+    }
+}
+
+
+export const toggleFollowingAC = (id: any) => {
+    return {
+        type: TOGGLE_FOLLOWING,
+        id: id
+    }
+}
+
+export const togglePreloaderAC = (actionPreloader: any) => {
     return {
         type: TOGGLE_PRELOADER,
         isPreloader: actionPreloader
     }
 }
-export const totalUsersAC = (totalUsers:any) => {
+export const totalUsersAC = (totalUsers: any) => {
     return {
         type: SET_TOTAL_USERS,
-        totalUsers:totalUsers
+        totalUsers: totalUsers
     }
 }
 

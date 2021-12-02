@@ -4,8 +4,6 @@ import Preloader from "../../../Preloader/Preloader";
 
 
 let FriendList = (props: any) => {
-    // let myFriend__List:any = React.createRef()
-
     return (
         <>
             <div  className={'myFriends__list'}>
@@ -38,6 +36,10 @@ let FriendList = (props: any) => {
                                         photo={elem.photos}
                                         follow={props.follow}
                                         unfollow={props.unfollow}
+                                        isFollowing ={props.isFollowing}
+                                        toggleFollowing ={props.toggleFollowing}
+                                        isPreloader = {props.isPreloader}
+                                        togglePreloader = {props.togglePreloader}
 
                     />
                 })

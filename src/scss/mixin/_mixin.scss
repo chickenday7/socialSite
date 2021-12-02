@@ -22,20 +22,27 @@
 @mixin buttonAdd() {
   width: 106px;
   height: 51px;
-  cursor: pointer;
-  background-color: white;
-  border: $gray solid 1px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-  &__text{
+  //cursor: pointer;
+  //background-color: white;
+  //border: $gray solid 1px;
+  //border-radius: 8px;
+  //display: flex;
+  //align-items: center;
+  //justify-content: center;
+  //user-select: none;
+  & > button{
     font-family: "Lexend-Regular";
-    color: $gray;
+    //color: $gray;
     font-weight: 500;
     font-size: 14px;
     margin: 0;
+    width: 106px;
+    height: 51px;
+    //outline: none;
+    //border: none;
+    //border-radius: 8px;
+    //cursor: pointer;
+    //background-color: white;
   }
 }
 

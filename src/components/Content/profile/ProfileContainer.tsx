@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import Profile from "./Profile";
 import axios from "axios";
-import {setProfileUserAC} from "../../Redux/profileReducer";
+import {getProfileThunkCreator, setProfileUserAC} from "../../Redux/profileReducer";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 
 
@@ -12,17 +12,10 @@ class ProfileAPI extends React.Component<any, any> {
     }
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${this.props.router.params.userId}`, {
-            headers: {
-                'API-KEY': '8c93655a-bf70-40c8-9c2a-4929b88b2e49'
-            }
-        }).then(response => {
-            this.props.setProfileUser(response.data)
-        });
+        this.props.getProfile(this.props.router.params.userId)
     }
 
     render() {
-        console.log(this.props)
         return (<Profile {...this.props.profilePage.profile} />)
     }
 }
@@ -38,10 +31,9 @@ let mapStateToProps = (state: any) => {
 
 let mapDispatchToProps = (dispatch: any) => {
     return {
-        setProfileUser: (objProfile: any) => {
-            dispatch(setProfileUserAC(objProfile))
+        getProfile: (userID:any) =>{
+            dispatch(getProfileThunkCreator(userID))
         }
-
     }
 
 }
