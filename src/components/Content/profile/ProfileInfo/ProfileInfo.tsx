@@ -1,6 +1,7 @@
 import React from "react";
 import userPhoto from "../../../../img/user/user.png"
 import Preloader from "../../../Preloader/Preloader";
+import ProfileStatus from "./ProfileStatus/ProfileStatus";
 
 
 const ProfileInfo = (props:any) => {
@@ -23,6 +24,7 @@ const ProfileInfo = (props:any) => {
                 </div>
                 <div className={'descriptionProfile'}>
                     <div className={'descriptionProfile__nickname'}>{myName}</div>
+                    <ProfileStatus status={'Hello world!'} />
                     <div className={'descriptionProfile__status'}>{props.aboutMe}</div>
                 </div>
             </div>

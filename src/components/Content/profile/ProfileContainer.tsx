@@ -1,9 +1,9 @@
 import React from "react";
 import {connect} from "react-redux";
 import Profile from "./Profile";
-import axios from "axios";
-import {getProfileThunkCreator, setProfileUserAC} from "../../Redux/profileReducer";
+import {getProfileThunkCreator} from "../../Redux/profileReducer";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
+import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 
 
 class ProfileAPI extends React.Component<any, any> {
@@ -16,27 +16,37 @@ class ProfileAPI extends React.Component<any, any> {
     }
 
     render() {
+        console.log(this.props.router)
         return (<Profile {...this.props.profilePage.profile} />)
     }
 }
+//__________________________________________________________________________
 
+let authRedirectProfile = withAuthRedirect(ProfileAPI)
+
+//__________________________________________________________________________
 
 let mapStateToProps = (state: any) => {
     return {
         profilePage: state.profilePage,
-        auth: state.auth
-
     }
 }
 
 let mapDispatchToProps = (dispatch: any) => {
     return {
-        getProfile: (userID:any) =>{
+        getProfile: (userID: any) => {
             dispatch(getProfileThunkCreator(userID))
         }
     }
 
 }
+
+
+
+let ProfileContainerWithStore = connect(mapStateToProps, mapDispatchToProps)(authRedirectProfile)
+
+//__________________________________________________________________________
+
 
 const ProfileContainer = (props: any) => {
     let location = useLocation()
@@ -44,8 +54,14 @@ const ProfileContainer = (props: any) => {
     let params = useParams()
     return (<ProfileContainerWithStore router={{location, navigate, params}}/>)
 }
+
+
 export default ProfileContainer
 
 
-let ProfileContainerWithStore = connect(mapStateToProps, mapDispatchToProps)(ProfileAPI)
+
+
+
+
+
 

@@ -19,7 +19,7 @@ let initialState = {
 
 
 const friendsReducer = (state: any = initialState, action: any) => {
-    debugger;
+
     switch (action.type) {
         case FOLLOW:
             return {

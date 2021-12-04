@@ -25,7 +25,6 @@ class FriendsListAPI extends React.Component<any, any> {
 
 
     render() {
-        console.log(this.props)
         let pagesCount = Math.ceil(this.props.totalUsers / this.props.pageSize);
         let arrayCount = [];
         for (let i = 1; i <= pagesCount; i++) {

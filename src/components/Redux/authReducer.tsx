@@ -13,12 +13,13 @@ let initialState = {
 
 
 const authReducer = (state: any = initialState, action: any) => {
+    debugger
     switch (action.type) {
         case SET_USER_DATA:
             return {
                 ...state,
                 ...action.data,
-                isAuth:true
+                isAuth: action.data.id === undefined ? false : true
             }
         default:
             return state
@@ -31,7 +32,7 @@ export const authMeThunkCreator = () => {
     return (dispatch:any) => {
         authAPI.authMe()
             .then((response:any) => {
-                let {id,email,login} = response.data.data
+                let {id,email,login} = response.data
                 dispatch(setUserDataAC(id,email,login))
             })
     }

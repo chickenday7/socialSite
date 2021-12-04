@@ -7,7 +7,6 @@ import PostsContainer from "./Posts/PostsContainer";
 const Profile:any = (props:any) => {
     return (
         <div className={'content'}>
-            <ImageProfile  />
             <ProfileInfo {...props} />
             <PostsContainer/>
         </div>

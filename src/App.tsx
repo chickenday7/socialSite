@@ -6,6 +6,8 @@ import {Route, Routes} from "react-router-dom";
 import MessagesContainer from "./components/Content/Messages/MessagesContainer";
 import Friends from "./components/Content/Friends/Friends";
 import ProfileContainer from "./components/Content/profile/ProfileContainer";
+import Login from "./components/Content/Login/Login";
+
 
 
 
@@ -22,6 +24,7 @@ const App:any = (props:any) => {
                         <Route path={"/messages/*"} element={<MessagesContainer/>} />
                         <Route path = {"/friends/*"} element = {<Friends />} />
                         {/*<Route path={"/news/*"} element={<News />}/>*/}
+                        <Route path = {"/login/*"} element={<Login />} />
                     </Routes>
                 </div>
             </div>

@@ -1,8 +1,6 @@
 import React from "react";
 import userPhoto from "../../../../../img/user/user.png"
 import {NavLink} from "react-router-dom";
-import axios from "axios";
-import {subscribeAPI, usersAPI} from "../../../../../API/api";
 
 
 const FriendsItem = (props: any) => {
@@ -13,7 +11,6 @@ const FriendsItem = (props: any) => {
     let onFollow = () => {
         props.follow(props.id)
     }
-    console.log(props.isFollowing[0])
     return (
         <div key={props.id} className={'blockFriend'}>
             <NavLink to={'/profile/' + props.id}>

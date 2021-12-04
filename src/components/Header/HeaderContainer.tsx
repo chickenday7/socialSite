@@ -26,7 +26,7 @@ const mapStateToProps = (state:any) =>{
 const mapDispatchToProps = (dispatch:any) => {
   return{
         authMe: () => {
-            dispatch(authMeThunkCreator)
+            dispatch(authMeThunkCreator())
         }
   }
 }
