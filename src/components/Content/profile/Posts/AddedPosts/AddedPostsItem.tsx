@@ -8,7 +8,7 @@ const AddedPostsItem:any = (props:any) =>{
     let likeArea:any = React.createRef()
 
     let onAddLike:any = () => {
-    let idMessage = likeArea.current.id;
+    let idMessage = Number(likeArea.current.id);
     props.addLike(idMessage)
     }
 

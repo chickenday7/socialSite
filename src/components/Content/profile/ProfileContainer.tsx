@@ -26,7 +26,7 @@ let authRedirectProfile = withAuthRedirect(ProfileAPI)
 
 //__________________________________________________________________________
 
-let mapStateToProps = (state: any) => {
+let mapStateToProps = (state:any) => {
     return {
         profilePage: state.profilePage,
     }
@@ -48,7 +48,7 @@ let ProfileContainerWithStore = connect(mapStateToProps, mapDispatchToProps)(aut
 //__________________________________________________________________________
 
 
-const ProfileContainer = (props: any) => {
+const ProfileContainer = () => {
     let location = useLocation()
     let navigate = useNavigate()
     let params = useParams()

@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React from "react";
 import {addLikeActionCreator, newPostAddActionCreator, newPostTextActionCreator} from "../../../Redux/profileReducer";
 import Posts from "./Posts";
 import {connect} from "react-redux";

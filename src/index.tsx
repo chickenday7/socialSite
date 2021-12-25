@@ -1,4 +1,4 @@
-import React, {FC, PropsWithChildren} from 'react';
+import React from 'react';
 import './index.scss';
 import ReactDOM from "react-dom";
 import App from "./App";
@@ -8,8 +8,7 @@ import {BrowserRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 
 
-let rerenderEntireTree = (state: any) => {
-    ReactDOM.render(
+ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
                 <App state={store.getState()}
@@ -20,8 +19,7 @@ let rerenderEntireTree = (state: any) => {
         document.getElementById('root')
     );
     reportWebVitals();
-}
-rerenderEntireTree(store.state);
+
 
 
 

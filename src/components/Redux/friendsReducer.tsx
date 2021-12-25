@@ -8,6 +8,8 @@ const SET_TOTAL_USERS = 'SET_TOTAL_USERS'
 const TOGGLE_PRELOADER = 'TOGGLE_PRELOADER'
 const TOGGLE_FOLLOWING = 'TOGGLE_FOLLOWING'
 
+
+
 let initialState = {
     users: [],
     totalUsers: 0,

@@ -12,17 +12,17 @@ import Login from "./components/Content/Login/Login";
 
 
 
-const App:any = (props:any) => {
+const App:any = () => {
     return (
             <div className={'app-wrapper'}>
                 <HeaderContainer />
                 <Navigation/>
                 <div className={'app-wrapper__content'}>
                     <Routes>
-                        {/*<Route path={"/*"} element={<Profile/>}/>*/}
+                        <Route path={"/"} element={<ProfileContainer/>}/>
                         <Route path={"/profile/:userId"} element={<ProfileContainer/>} />
                         <Route path={"/messages/*"} element={<MessagesContainer/>} />
-                        <Route path = {"/friends/*"} element = {<Friends />} />
+                        <Route path = {"/friends/"} element = {<Friends />} />
                         {/*<Route path={"/news/*"} element={<News />}/>*/}
                         <Route path = {"/login/*"} element={<Login />} />
                     </Routes>

@@ -5,7 +5,19 @@ const ADD_POST = 'ADD-POST';
 const ADD_LIKE = 'ADD_LIKE';
 const SET_PROFILE = 'SET_PROFILE';
 
-let initialState = {
+type PostsData = {
+    id:number
+    news:string
+    likeCount:number
+}
+export type ProfilePage = {
+    postsData:Array<PostsData>
+    newPostText: string
+    profile:Object
+}
+
+
+let initialState:ProfilePage = {
     postsData:
         [
             {id: 1, news: "the weather in St. Petersburg is suitable for studying", likeCount: 99},
@@ -19,7 +31,8 @@ let initialState = {
 }
 
 
-const profileReducer = (state: any = initialState, action: any) => {
+const profileReducer = (state: ProfilePage = initialState, action: any) => {
+    debugger
     switch (action.type) {
         case ADD_POST:
             return  {
@@ -39,9 +52,10 @@ const profileReducer = (state: any = initialState, action: any) => {
             }
 
         case ADD_LIKE:
+            let newArray = state.postsData.map(elem => elem.id === action.id ? {...elem,likeCount:elem.likeCount +1}: elem)
             return  {
                 ...state,
-                postsData: [...state.postsData[action.id - 1].likeCount += 1]
+                postsData: newArray
             }
         case SET_PROFILE:
             return {
@@ -67,28 +81,31 @@ export const getProfileThunkCreator = (usersID:any) => {
 }
 
 
-
-export const setProfileUserAC:any = (objProfile:any) => {
+type setProfileUserAC = (objProfile:object) => {type:string,profile:object} //УТОЧНИТЬ!!!!!!!!!!!!!!!
+export const setProfileUserAC:setProfileUserAC = (objProfile) => {
     return {
         type: SET_PROFILE,
         profile: objProfile
     }
 }
 
-export const newPostTextActionCreator: any = (text: any) => {
+type NewPostTextAC=(text:string)=>{type:string,postText:string}
+export const newPostTextActionCreator: NewPostTextAC = (text) => {
     return {
         type: UPDATE_POST_TEXT,
         postText: text
     }
 }
 
-export const newPostAddActionCreator: any = () => {
+type NewPostAddAC = () => {type:string}
+export const newPostAddActionCreator: NewPostAddAC = () => {
     return {
         type: ADD_POST
     }
 }
 
-export const addLikeActionCreator = (id: any) => {
+type AddLikeAC = (id:number) => {type:string, id:number}
+export const addLikeActionCreator:AddLikeAC = (id) => {
     return {
         type: ADD_LIKE,
         id: id

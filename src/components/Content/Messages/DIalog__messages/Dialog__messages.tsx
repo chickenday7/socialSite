@@ -19,7 +19,6 @@ const Dialog__messages: any = (props: any) => {
 
 
 
-
     return (
         <div className={'allMessages'}>
             <div className={'allMessages__title'}>

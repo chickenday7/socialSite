@@ -14,8 +14,7 @@ const Friends = (props:any) =>{
             {/*myFriends__title*/}
 
             {/*myFriends__list*/}
-            <FriendsListContainer
-            />
+            <FriendsListContainer/>
             {/*myFriends__list*/}
 
             {/*myFriends__filter*/}

@@ -1,14 +1,14 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
 
-const Navigation = () => {
+const  Navigation = () => {
     // TYPE DECLARATION!!!!!!!!!!!!!!!!!!!!!!!!!!
     // declare function NavLink(
     //     props: NavLinkProps
     // ): React.ReactElement;
     //
     // interface NavLinkProps
-    //     extends Omit<LinkProps, "className" | "style"> {
+    //     extends Omit<"className" | "style" |  > {
     //     caseSensitive?: boolean;
     //     className?:
     //         | string
@@ -22,7 +22,7 @@ const Navigation = () => {
     // }
 
 
-    let activeStyle:any = {             // тут надо спросить!!!!!!!!!!!!!!!!!!!//
+    let activeStyle:any = {
         textDecoration: "none",
         color: "orange",
         fontSize: 22 + 'px'
