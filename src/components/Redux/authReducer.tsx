@@ -1,4 +1,5 @@
 import {authAPI} from "../../API/api";
+import {Dispatch} from "redux";
 
 const SET_USER_DATA = "SET_USER_DATA"
 
@@ -10,15 +11,21 @@ let initialState = {
     isAuth:false,
     isFetching:false
 }
+type AuthReducerType = {
+    id: number | null
+    email: string | null
+    login: string | null
+    isAuth: boolean
+    isFetching: boolean
+}
 
-
-const authReducer = (state: any = initialState, action: any) => {
+const authReducer = (state: AuthReducerType  = initialState, action: ActionType):AuthReducerType => {
     switch (action.type) {
         case SET_USER_DATA:
             return {
                 ...state,
                 ...action.data,
-                isAuth: action.data.id === undefined ? false : true
+                isAuth: action.data.id !== undefined
             }
         default:
             return state
@@ -27,10 +34,11 @@ const authReducer = (state: any = initialState, action: any) => {
 
 export default authReducer;
 
+
 export const authMeThunkCreator = () => {
-    return (dispatch:any) => {
+    return (dispatch:Dispatch) => {
         authAPI.authMe()
-            .then((response:any) => {
+            .then((response) => {
                 let {id,email,login} = response.data
                 dispatch(setUserDataAC(id,email,login))
             })
@@ -38,12 +46,16 @@ export const authMeThunkCreator = () => {
 }
 
 
+type ActionType =
+    SetUserDataACType
 
-export const setUserDataAC = (id:any, email:any, login:any) => {
+
+
+type SetUserDataACType = {type: typeof SET_USER_DATA, data:{id:number,email:string,login:string}}
+export const setUserDataAC = (id:number, email:string, login:string):SetUserDataACType => {
     return {
         type:SET_USER_DATA,
         data: {id:id,email:email,login:login}
-
     }
 }
 

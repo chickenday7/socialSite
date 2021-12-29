@@ -5,7 +5,7 @@ import FriendsListContainer from "./FriendsList/FriendListContainer";
 
 
 
-const Friends = (props:any) =>{
+const Friends = () =>{
     return(
         <div className={'myFriends'}>
 
@@ -21,15 +21,7 @@ const Friends = (props:any) =>{
             <FriendsFilter />
             {/*myFriends__filter*/}
         </div>
-    //    friendsPage = {props.friendsPage}
-        //                             follow = {props.follow}
-        //                             unfollow = {props.unfollow}
-        //                             setUsers = {props.setUsers}
-        //                             pageSize = {props.pageSize}
-        //                             totalUsers = {props.totalUsers}
-        //                             currentPage = {props.currentPage}
-        //                             updatePage = {props.updatePage}
-        //                             setCountUsers ={props.setCountUsers}
+
     )
 }
 

@@ -1,23 +1,46 @@
 import {profileAPI} from "../../API/api";
+import {Dispatch} from "redux";
 
 const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
 const ADD_POST = 'ADD-POST';
 const ADD_LIKE = 'ADD_LIKE';
 const SET_PROFILE = 'SET_PROFILE';
 
+
+
 type PostsData = {
     id:number
     news:string
     likeCount:number
 }
-export type ProfilePage = {
-    postsData:Array<PostsData>
-    newPostText: string
-    profile:Object
+
+export type ProfileType = {
+    aboutMe: null | string
+    contacts: {facebook: null | string
+        github: null | string
+        instagram: null | string
+        mainLink: null| string
+        twitter: null | string
+        vk: null | string
+        website: null | string
+        youtube: null | string
+    }
+    fullName: string
+    lookingForAJob: boolean
+    lookingForAJobDescription: null | string
+    photos: {small: null | string, large: null | string}
+    userId: number
 }
 
 
-let initialState:ProfilePage = {
+export type ProfileStateType = {
+    postsData:Array<PostsData>
+    newPostText: string
+    profile: ProfileType | null
+}
+
+
+let initialState:ProfileStateType = {
     postsData:
         [
             {id: 1, news: "the weather in St. Petersburg is suitable for studying", likeCount: 99},
@@ -25,14 +48,13 @@ let initialState:ProfilePage = {
             {id: 3, news: 'this is my first project on a react!', likeCount: 8},
         ],
     newPostText: '',
-    profile: {}
+    profile: null
 
 
 }
 
 
-const profileReducer = (state: ProfilePage = initialState, action: any) => {
-    debugger
+const profileReducer = (state: ProfileStateType = initialState, action: ActionType):ProfileStateType => {
     switch (action.type) {
         case ADD_POST:
             return  {
@@ -71,8 +93,13 @@ const profileReducer = (state: ProfilePage = initialState, action: any) => {
 
 export default profileReducer;
 
-export const getProfileThunkCreator = (usersID:any) => {
-    return (dispatch:any) => {
+
+
+
+
+
+export const getProfileThunkCreator = (usersID:number) => {
+    return (dispatch:Dispatch) => {
         profileAPI.getProfile(usersID)
             .then((response:any) => {
                 dispatch(setProfileUserAC(response.data))
@@ -81,31 +108,43 @@ export const getProfileThunkCreator = (usersID:any) => {
 }
 
 
-type setProfileUserAC = (objProfile:object) => {type:string,profile:object} //УТОЧНИТЬ!!!!!!!!!!!!!!!
-export const setProfileUserAC:setProfileUserAC = (objProfile) => {
+
+type ActionType =
+    NewPostAddAC|
+    NewPostTextACType|
+    AddLikeAC|
+    SetProfileUserACType
+
+
+
+type SetProfileUserACType  = {type:typeof SET_PROFILE, profile: ProfileType}
+export const setProfileUserAC = (objProfile:ProfileType):SetProfileUserACType => {
     return {
         type: SET_PROFILE,
         profile: objProfile
     }
 }
 
-type NewPostTextAC=(text:string)=>{type:string,postText:string}
-export const newPostTextActionCreator: NewPostTextAC = (text) => {
+
+type NewPostTextACType = {type:typeof UPDATE_POST_TEXT,postText:string}
+export const newPostTextActionCreator = (text:string):NewPostTextACType => {
     return {
         type: UPDATE_POST_TEXT,
         postText: text
     }
-}
+} 
 
-type NewPostAddAC = () => {type:string}
-export const newPostAddActionCreator: NewPostAddAC = () => {
+
+type NewPostAddAC =  {type:typeof ADD_POST}
+export const newPostAddActionCreator = ():NewPostAddAC => {
     return {
         type: ADD_POST
     }
 }
 
-type AddLikeAC = (id:number) => {type:string, id:number}
-export const addLikeActionCreator:AddLikeAC = (id) => {
+
+type AddLikeAC =  {type:typeof ADD_LIKE, id:number}
+export const addLikeActionCreator = (id:number):AddLikeAC => {
     return {
         type: ADD_LIKE,
         id: id

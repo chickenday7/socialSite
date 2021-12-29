@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {authMeThunkCreator, setUserDataAC} from "../Redux/authReducer";
+import {authMeThunkCreator} from "../Redux/authReducer";
 import Header from "./Header";
 
 
@@ -14,6 +14,7 @@ class HeaderAPI extends React.Component<any, any> {
     }
 
     render() {
+        debugger
         return (<Header {...this.props} />);
     }
 }

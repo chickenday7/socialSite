@@ -1,7 +1,9 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
+import {getProfileThunkCreator} from "../Redux/profileReducer";
+import {connect} from "react-redux";
 
-const  Navigation = () => {
+const  Navigation = (props:any) => {
     // TYPE DECLARATION!!!!!!!!!!!!!!!!!!!!!!!!!!
     // declare function NavLink(
     //     props: NavLinkProps
@@ -31,7 +33,7 @@ const  Navigation = () => {
         <nav className={'nav'}>
             <ul>
                 <li className={'nav__elem'}>
-                    <NavLink to="/profile/21021" style = {({ isActive }) =>
+                    <NavLink to={`/profile/${props.userID}`} style = {({ isActive }) =>
                         isActive ? activeStyle : undefined
                     } >Profile</NavLink>
                 </li>
@@ -61,4 +63,17 @@ const  Navigation = () => {
     )
 };
 
-export default  Navigation;
+
+
+let mapStateToProps = (state:any) => {
+    return {
+        userID:state.auth.id
+    }
+}
+
+
+let NavigationContainer = connect(mapStateToProps)(Navigation)
+
+
+
+export default  NavigationContainer;

@@ -1,40 +1,49 @@
 import React from "react";
 import {connect} from "react-redux";
 import Profile from "./Profile";
-import {getProfileThunkCreator} from "../../Redux/profileReducer";
-import {useLocation, useNavigate, useParams} from "react-router-dom";
+import {getProfileThunkCreator, ProfileType} from "../../Redux/profileReducer";
+import {Params, useParams} from "react-router-dom";
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
+import {StateType} from "../../Redux/redux-store";
+import {ThunkDispatch} from "redux-thunk";
 
+export type ProfilePropsType = mapDispatchToPropsType & mapStateToPropsType & {router:Params}
 
-class ProfileAPI extends React.Component<any, any> {
-    constructor(props: any) {
-        super(props);
-    }
+class ProfileAPI extends React.Component<ProfilePropsType> {
 
     componentDidMount() {
-        this.props.getProfile(this.props.router.params.userId)
+        this.props.router.userId === undefined
+            ? this.props.getProfile(2)
+            : this.props.getProfile(+this.props.router.userId)
     }
 
     render() {
-        console.log(this.props.router)
-        return (<Profile {...this.props.profilePage.profile} />)
+        debugger
+        return (<Profile profile={this.props.profile} />)
     }
 }
 //__________________________________________________________________________
 
-let authRedirectProfile = withAuthRedirect(ProfileAPI)
+// let authRedirectProfile = withAuthRedirect(ProfileAPI)
 
 //__________________________________________________________________________
 
-let mapStateToProps = (state:any) => {
+type mapStateToPropsType = {
+    profile: ProfileType | null
+}
+let mapStateToProps = (state:StateType):mapStateToPropsType => {
     return {
-        profilePage: state.profilePage,
+        profile: state.profilePage.profile
     }
 }
 
-let mapDispatchToProps = (dispatch: any) => {
+
+type mapDispatchToPropsType = {
+    getProfile: (userID:number) => void
+}
+let mapDispatchToProps = (dispatch: ThunkDispatch<any, any, any>):mapDispatchToPropsType => { //!!!!!!!!!!!!!!!!!
     return {
-        getProfile: (userID: any) => {
+        getProfile: (userID) => {
             dispatch(getProfileThunkCreator(userID))
         }
     }
@@ -43,16 +52,15 @@ let mapDispatchToProps = (dispatch: any) => {
 
 
 
-let ProfileContainerWithStore = connect(mapStateToProps, mapDispatchToProps)(authRedirectProfile)
+let ProfileContainerWithStore = connect<mapStateToPropsType, mapDispatchToPropsType,{router:Params},StateType>
+(mapStateToProps, mapDispatchToProps)(ProfileAPI)
 
 //__________________________________________________________________________
 
 
 const ProfileContainer = () => {
-    let location = useLocation()
-    let navigate = useNavigate()
-    let params = useParams()
-    return (<ProfileContainerWithStore router={{location, navigate, params}}/>)
+    let params:Params = useParams()
+    return (<ProfileContainerWithStore router={params} />)
 }
 
 

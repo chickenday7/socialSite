@@ -4,76 +4,81 @@ import {connect} from "react-redux";
 import {
     changePageThunkCreator,
     followThunkCreator,
+    FriendsStateType,
     getUsersThunkCreator,
     unfollowThunkCreator
 } from "../../../Redux/friendsReducer";
 import FriendList from "./FriendList";
+import {ThunkDispatch} from "redux-thunk";
+import {StateType} from "../../../Redux/redux-store";
 
 
-class FriendsListAPI extends React.Component<any, any> {
-    constructor(props: any) {
-        super(props);
-    }
 
+type FriendsList = MapDispatchToPropsType & MapStateToPropsType
+class FriendsListAPI extends React.Component<FriendsList> {
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        this.props.getUsers(this.props.friendsPage.currentPage, this.props.friendsPage.pageSize)
     }
-
-    onCurrentPage = (newCurrentPage: any) => {
-        this.props.changePage(newCurrentPage, this.props.pageSize)
+    onCurrentPage = (newCurrentPage: number) => {
+        this.props.changePage(newCurrentPage, this.props.friendsPage.pageSize)
     }
 
 
     render() {
-        let pagesCount = Math.ceil(this.props.totalUsers / this.props.pageSize);
+        let pagesCount = Math.ceil(this.props.friendsPage.totalUsers / this.props.friendsPage.pageSize);
         let arrayCount = [];
         for (let i = 1; i <= pagesCount; i++) {
             arrayCount.push(i)
         }
+
+
         return (
             <FriendList arrayCount={arrayCount}
                         pagesCount={pagesCount}
                         onCurrentPage={this.onCurrentPage}
-                        friendsPage={this.props.friendsPage}
-                        currentPage={this.props.currentPage}
-                        isPreloader={this.props.isPreloader}
-                        isFollowing={this.props.isFollowing}
-                        follow = {this.props.follow}
-                        unfollow={this.props.unfollow}
+                        {...this.props}
+
+
             />
         )
     }
 }
 
-let mapStateToProps = (state: any) => {
+
+type MapStateToPropsType = {
+    friendsPage: FriendsStateType
+}
+let mapStateToProps = (state: StateType):MapStateToPropsType => {
     return {
-        pageSize: state.friendsPage.pageSize,
-        friendsPage: state.friendsPage.users,
-        totalUsers: state.friendsPage.totalUsers,
-        currentPage: state.friendsPage.currentPage,
-        isPreloader: state.friendsPage.isPreloader,
-        isFollowing: state.friendsPage.isFollowing
+        friendsPage:state.friendsPage,
     }
 }
 
-let mapDispatchToProps = (dispatch: any) => {
+
+type MapDispatchToPropsType = {
+    getUsers: (currentPage:number,pageSize:number) => void
+    changePage: (newCurrentPage:number,pageSize:number) => void
+    follow: (id:number) => void
+    unfollow: (id:number) => void
+}
+let mapDispatchToProps = (dispatch: ThunkDispatch<any, any, any>):MapDispatchToPropsType => {
     return {
-        getUsers: (currentPage: any, pageSize: any) => {
+        getUsers: (currentPage: number, pageSize: number) => {
             dispatch(getUsersThunkCreator(currentPage, pageSize))
         },
-        changePage: (newCurrentPage: any, pageSize: any) => {
+        changePage: (newCurrentPage: number, pageSize: number) => {
             dispatch(changePageThunkCreator(newCurrentPage, pageSize))
         },
-        follow: (id:any) => {
+        follow: (id:number) => {
             dispatch(followThunkCreator(id))
         },
-        unfollow: (id:any) => {
+        unfollow: (id:number) => {
             dispatch(unfollowThunkCreator(id))
         }
     }
 }
 
 
-const FriendsListContainer = connect(mapStateToProps, mapDispatchToProps)(FriendsListAPI)
+const FriendsListContainer = connect<MapStateToPropsType,MapDispatchToPropsType,{},StateType>(mapStateToProps, mapDispatchToProps)(FriendsListAPI)
 
 export default FriendsListContainer

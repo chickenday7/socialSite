@@ -1,12 +1,13 @@
 import React from "react";
 
-
-class ProfileStatus extends React.Component<any, any> {
-    constructor(props: any) {
-        super(props);
-    }
-
-    state = {
+type LocalStateType = {
+    editMode:boolean
+}
+type ProfileStatusType = {
+    status:string
+}
+class ProfileStatus extends React.Component<ProfileStatusType, LocalStateType> {
+    state:LocalStateType = {
         editMode: false
     }
     activateEditMode = () => {
@@ -15,14 +16,12 @@ class ProfileStatus extends React.Component<any, any> {
         })
     }
     deactivateEditMode = () => {
-
         this.setState({
             editMode:false
         })
     }
 
     render() {
-
         return (
             <>
                 {!this.state.editMode

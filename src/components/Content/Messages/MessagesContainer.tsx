@@ -5,6 +5,8 @@ import Messages from "./Messages";
 import {connect} from "react-redux";
 import {Navigate} from "react-router-dom";
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
+import {Dispatch} from "redux";
+import {StateType} from "../../Redux/redux-store";
 
 class MessagesAPI extends React.Component<any, any>{
     constructor(props:any) {
@@ -25,13 +27,13 @@ let authRedirectMessages = withAuthRedirect(MessagesAPI)
 
 //__________________________________________________________________________
 
-let mapStateToProps = (state:any) => {
+let mapStateToProps = (state:StateType) => {
     return {
         messagesPage: state.messagesPage,
 
     }
 }
-let mapDispatchToProps = (dispatch:any) => {
+let mapDispatchToProps = (dispatch:Dispatch) => {
      return {
         addMessage: () => {
             dispatch(newMessageAddActionCreator())

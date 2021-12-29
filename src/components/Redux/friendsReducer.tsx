@@ -1,4 +1,5 @@
-import {subscribeAPI, usersAPI} from "../../API/api";
+import {subscribeAPI, usersAPI, UserType} from "../../API/api";
+import {Dispatch} from "redux";
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -20,8 +21,18 @@ let initialState = {
 }
 
 
-const friendsReducer = (state: any = initialState, action: any) => {
 
+export type FriendsStateType = {
+    users:Array<UserType>
+    totalUsers:number
+    pageSize:number
+    currentPage:number
+    isPreloader: boolean
+    isFollowing:Array<number>
+}
+
+
+const friendsReducer = (state: FriendsStateType = initialState, action: actionType):FriendsStateType => {
     switch (action.type) {
         case FOLLOW:
             return {
@@ -78,9 +89,9 @@ const friendsReducer = (state: any = initialState, action: any) => {
         case TOGGLE_FOLLOWING: {
             return {
                 ...state,
-                isFollowing: state.isPreloader === true
+                isFollowing: state.isPreloader
                     ? [...state.isFollowing, action.id]
-                    : [...state.isFollowing.filter((id: any) => id != action.id)]
+                    : [...state.isFollowing.filter((id) => id != action.id)]
             }
         }
         default:
@@ -89,22 +100,24 @@ const friendsReducer = (state: any = initialState, action: any) => {
     }
 }
 
-export const getUsersThunkCreator = (currentPage: any, pageSize: any) => {
-    return (dispatch: any) => {
+export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+    return (dispatch: Dispatch) => {
         dispatch(togglePreloaderAC(true));
         usersAPI.getUsers(currentPage, pageSize)
-            .then((response: { items: any; totalCount: any; }) => {
+            .then((response) => {
+
                 dispatch(setUsersAC(response.items));
                 dispatch(totalUsersAC(response.totalCount));
                 dispatch(togglePreloaderAC(false));
             });
     }
 }
-export const changePageThunkCreator = (newCurrentPage: any, pageSize: any) => {
-    return (dispatch: any) => {
+export const changePageThunkCreator = (newCurrentPage: number, pageSize: number) => {
+    return (dispatch: Dispatch) => {
         dispatch(newPageAC(newCurrentPage));
         dispatch(togglePreloaderAC(true));
-        usersAPI.getUsers(newCurrentPage, pageSize).then((response: { items: any; }) => {
+        usersAPI.getUsers(newCurrentPage, pageSize)
+            .then((response) => {
 
             dispatch(setUsersAC(response.items));
             dispatch(togglePreloaderAC(false));
@@ -112,13 +125,12 @@ export const changePageThunkCreator = (newCurrentPage: any, pageSize: any) => {
     }
 }
 
-export const followThunkCreator = (id: any) => {
-    debugger;
-    return (dispatch: any) => {
+export const followThunkCreator = (id: number) => {
+    return (dispatch: Dispatch) => {
         dispatch(togglePreloaderAC(true));
         dispatch(toggleFollowingAC(id))
         subscribeAPI.follow(id)
-            .then((data: any) => {
+            .then((data) => {
                 if (data.resultCode === 0) {
                     dispatch(followAC(id))
                 }
@@ -129,14 +141,14 @@ export const followThunkCreator = (id: any) => {
 
     }
 }
-export const unfollowThunkCreator = (id: any) => {
-    return (dispatch: any) => {
+export const unfollowThunkCreator = (id: number) => {
+    return (dispatch: Dispatch) => {
         dispatch(togglePreloaderAC(true));
         dispatch(toggleFollowingAC(id))
         subscribeAPI.unfollow(id)
-            .then((data: any) => {
+            .then((data) => {
                 if (data.resultCode === 0) {
-                    dispatch(followAC(id))
+                    dispatch(unFollowAC(id))
                 }
                 dispatch(togglePreloaderAC(false))
                 dispatch(toggleFollowingAC(id))
@@ -146,49 +158,66 @@ export const unfollowThunkCreator = (id: any) => {
     }
 }
 
+type actionType =
+    ToggleFollowinACType|
+    TogglePreloaderType|
+    TotalUserACType|
+    NewPageACType |
+    FollowACType |
+    UnFollowACType|
+    SetUsersACType
 
-export const toggleFollowingAC = (id: any) => {
+
+type ToggleFollowinACType = {type: typeof TOGGLE_FOLLOWING,id:number}
+export const toggleFollowingAC = (id: number):ToggleFollowinACType => {
     return {
         type: TOGGLE_FOLLOWING,
         id: id
     }
 }
 
-export const togglePreloaderAC = (actionPreloader: any) => {
+type TogglePreloaderType = {type:typeof TOGGLE_PRELOADER, isPreloader:boolean}
+export const togglePreloaderAC = (actionPreloader: boolean):TogglePreloaderType => {
     return {
         type: TOGGLE_PRELOADER,
         isPreloader: actionPreloader
     }
 }
-export const totalUsersAC = (totalUsers: any) => {
+
+type TotalUserACType = {type:typeof SET_TOTAL_USERS, totalUsers:number}
+export const totalUsersAC = (totalUsers: number):TotalUserACType => {
     return {
         type: SET_TOTAL_USERS,
         totalUsers: totalUsers
     }
 }
 
-export const newPageAC = (newCurrent: any) => {
+type NewPageACType = {type:typeof SET_CURRENT_PAGE,newCurrent:number}
+export const newPageAC = (newCurrent: number):NewPageACType => {
     return {
         type: SET_CURRENT_PAGE,
         newCurrent: newCurrent
     }
 }
 
-export const followAC = (userID: any) => {
+type FollowACType = {type:typeof FOLLOW, id:number}
+export const followAC = (userID: number):FollowACType => {
     return {
         type: FOLLOW,
         id: userID
     }
 }
 
-export const unFollowAC = (userID: any) => {
+type UnFollowACType = {type:typeof UNFOLLOW,id:number}
+export const unFollowAC = (userID: number):UnFollowACType => {
     return {
         type: UNFOLLOW,
         id: userID
     }
 }
 
-export const setUsersAC = (newArrayUsers: any) => {
+type SetUsersACType = {type:typeof  SET_USERS, array: Array<UserType>}
+export const setUsersAC = (newArrayUsers: Array<UserType>):SetUsersACType => {
     return {
         type: SET_USERS,
         array: newArrayUsers

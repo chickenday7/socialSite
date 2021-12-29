@@ -1,26 +1,25 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import profileReducer, {ProfilePage} from "./profileReducer";
+import profileReducer from "./profileReducer";
 import messagesReducer from "./messagesReducer";
 import friendsReducer from "./friendsReducer";
 import authReducer from "./authReducer";
 import thunkMiddle from "redux-thunk";
 
 
-type state = {
-    profilePage: ProfilePage
-}
 
 
-let reducer = combineReducers({
+
+let bigReducer = combineReducers({
     profilePage: profileReducer,
     messagesPage: messagesReducer,
     friendsPage: friendsReducer,
     auth:authReducer
 });
 
+export type StateType = ReturnType<typeof bigReducer>
 
 
-export let store:any = createStore(reducer,applyMiddleware(thunkMiddle))
+export let store:any = createStore(bigReducer,applyMiddleware(thunkMiddle))
 
 
 

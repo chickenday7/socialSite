@@ -1,10 +1,14 @@
-import React, {FC} from "react";
+import React from "react";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import ImageProfile from "./HeaderProfile/HeaderProfile";
 import PostsContainer from "./Posts/PostsContainer";
+import {ProfileType} from "../../Redux/profileReducer";
 
 
-const Profile:any = (props:any) => {
+export type PropsProfileType = {
+    profile: ProfileType | null
+}
+
+const Profile = (props:PropsProfileType) => {
     return (
         <div className={'content'}>
             <ProfileInfo {...props} />

@@ -1,37 +1,47 @@
 import React from "react";
 import userPhoto from "../../../../../img/user/user.png"
 import {NavLink} from "react-router-dom";
+import {UserType} from "../../../../../API/api";
 
-
-const FriendsItem = (props: any) => {
-
-    let onUnfollow = () => {
-        props.unfollow(props.id)
+type FriendsItemType = {
+    user:UserType
+    follow: (id:number) => void
+    unfollow: (id:number) => void
+    isPreloader: boolean
+    isFollowing:Array<number>
+}
+const FriendsItem = (props:FriendsItemType) => {
+    const onUnfollow = () => {
+        props.unfollow(props.user.id)
     }
-    let onFollow = () => {
-        props.follow(props.id)
+    const onFollow = () => {
+        props.follow(props.user.id)
     }
+    const checkDisable:boolean =  props.isFollowing.some((id:number) => id == props.user.id)
+
+
+
     return (
-        <div key={props.id} className={'blockFriend'}>
-            <NavLink to={'/profile/' + props.id}>
+        <div className={'blockFriend'}>
+            <NavLink to={'/profile/' + props.user.id}>
                 <div className={'blockFriend__photo'}>
-                    <img src={props.photo.small !== null ? props.photo.small : userPhoto}/>
+                    <img src={props.user.photos.small !== null ? props.user.photos.small : userPhoto}/>
                 </div>
             </NavLink>
             <div className={'blockFriend__description'}>
-                <div className={'description__name'}>{props.name} </div>
-                <div className={'description__stat'}>{props.status}</div>
+                <div className={'description__name'}>{props.user.name} </div>
+                <div className={'description__stat'}>{props.user.status}</div>
                 <div className={'description__country'}>Country</div>
                 <div className={'description__city'}>City</div>
             </div>
             <div className={'blockFriend__button'}>
-                {props.followed ?
+                {props.user.followed ?
                     <div   className={'buttonAdd'}>
-                        <button onClick={onUnfollow} disabled={props.isFollowing.some((id:any) => id == props.id)} >UNFOLLOW</button>
+                        <button onClick={onUnfollow} disabled={checkDisable} >UNFOLLOW</button>
                     </div>
                     :
                     <div  className={'buttonAdd'}>
-                        <button onClick={onFollow} disabled={props.isFollowing.some((id:any) => id == props.id)}  >FOLLOW</button>
+                        <button onClick={onFollow} disabled={checkDisable}  >FOLLOW</button>
                     </div>}
             </div>
         </div>
