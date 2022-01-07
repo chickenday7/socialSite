@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import Profile from "./Profile";
 import {getProfileThunkCreator, ProfileType} from "../../Redux/profileReducer";
 import {Params, useParams} from "react-router-dom";
-import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 import {StateType} from "../../Redux/redux-store";
 import {ThunkDispatch} from "redux-thunk";
 

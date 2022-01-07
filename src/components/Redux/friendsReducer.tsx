@@ -10,7 +10,6 @@ const TOGGLE_PRELOADER = 'TOGGLE_PRELOADER'
 const TOGGLE_FOLLOWING = 'TOGGLE_FOLLOWING'
 
 
-
 let initialState = {
     users: [],
     totalUsers: 0,
@@ -21,18 +20,17 @@ let initialState = {
 }
 
 
-
 export type FriendsStateType = {
-    users:Array<UserType>
-    totalUsers:number
-    pageSize:number
-    currentPage:number
+    users: Array<UserType>
+    totalUsers: number
+    pageSize: number
+    currentPage: number
     isPreloader: boolean
-    isFollowing:Array<number>
+    isFollowing: Array<number>
 }
 
 
-const friendsReducer = (state: FriendsStateType = initialState, action: actionType):FriendsStateType => {
+const friendsReducer = (state: FriendsStateType = initialState, action: actionType): FriendsStateType => {
     switch (action.type) {
         case FOLLOW:
             return {
@@ -119,9 +117,9 @@ export const changePageThunkCreator = (newCurrentPage: number, pageSize: number)
         usersAPI.getUsers(newCurrentPage, pageSize)
             .then((response) => {
 
-            dispatch(setUsersAC(response.items));
-            dispatch(togglePreloaderAC(false));
-        });
+                dispatch(setUsersAC(response.items));
+                dispatch(togglePreloaderAC(false));
+            });
     }
 }
 
@@ -153,71 +151,69 @@ export const unfollowThunkCreator = (id: number) => {
                 dispatch(togglePreloaderAC(false))
                 dispatch(toggleFollowingAC(id))
             })
-
-
     }
 }
 
 type actionType =
-    ToggleFollowinACType|
-    TogglePreloaderType|
-    TotalUserACType|
+    ToggleFollowinACType |
+    TogglePreloaderType |
+    TotalUserACType |
     NewPageACType |
     FollowACType |
-    UnFollowACType|
+    UnFollowACType |
     SetUsersACType
 
 
-type ToggleFollowinACType = {type: typeof TOGGLE_FOLLOWING,id:number}
-export const toggleFollowingAC = (id: number):ToggleFollowinACType => {
+type ToggleFollowinACType = { type: typeof TOGGLE_FOLLOWING, id: number }
+export const toggleFollowingAC = (id: number): ToggleFollowinACType => {
     return {
         type: TOGGLE_FOLLOWING,
         id: id
     }
 }
 
-type TogglePreloaderType = {type:typeof TOGGLE_PRELOADER, isPreloader:boolean}
-export const togglePreloaderAC = (actionPreloader: boolean):TogglePreloaderType => {
+type TogglePreloaderType = { type: typeof TOGGLE_PRELOADER, isPreloader: boolean }
+export const togglePreloaderAC = (actionPreloader: boolean): TogglePreloaderType => {
     return {
         type: TOGGLE_PRELOADER,
         isPreloader: actionPreloader
     }
 }
 
-type TotalUserACType = {type:typeof SET_TOTAL_USERS, totalUsers:number}
-export const totalUsersAC = (totalUsers: number):TotalUserACType => {
+type TotalUserACType = { type: typeof SET_TOTAL_USERS, totalUsers: number }
+export const totalUsersAC = (totalUsers: number): TotalUserACType => {
     return {
         type: SET_TOTAL_USERS,
         totalUsers: totalUsers
     }
 }
 
-type NewPageACType = {type:typeof SET_CURRENT_PAGE,newCurrent:number}
-export const newPageAC = (newCurrent: number):NewPageACType => {
+type NewPageACType = { type: typeof SET_CURRENT_PAGE, newCurrent: number }
+export const newPageAC = (newCurrent: number): NewPageACType => {
     return {
         type: SET_CURRENT_PAGE,
         newCurrent: newCurrent
     }
 }
 
-type FollowACType = {type:typeof FOLLOW, id:number}
-export const followAC = (userID: number):FollowACType => {
+type FollowACType = { type: typeof FOLLOW, id: number }
+export const followAC = (userID: number): FollowACType => {
     return {
         type: FOLLOW,
         id: userID
     }
 }
 
-type UnFollowACType = {type:typeof UNFOLLOW,id:number}
-export const unFollowAC = (userID: number):UnFollowACType => {
+type UnFollowACType = { type: typeof UNFOLLOW, id: number }
+export const unFollowAC = (userID: number): UnFollowACType => {
     return {
         type: UNFOLLOW,
         id: userID
     }
 }
 
-type SetUsersACType = {type:typeof  SET_USERS, array: Array<UserType>}
-export const setUsersAC = (newArrayUsers: Array<UserType>):SetUsersACType => {
+type SetUsersACType = { type: typeof SET_USERS, array: Array<UserType> }
+export const setUsersAC = (newArrayUsers: Array<UserType>): SetUsersACType => {
     return {
         type: SET_USERS,
         array: newArrayUsers
