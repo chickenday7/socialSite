@@ -1,14 +1,17 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 
 type LocalStateType = {
     editMode:boolean
+    status: string
 }
 type ProfileStatusType = {
-    status:string
+    status:string | undefined
+    updateStatus: (status:string)=> void
 }
 class ProfileStatus extends React.Component<ProfileStatusType, LocalStateType> {
     state:LocalStateType = {
-        editMode: false
+        editMode: false,
+        status:this.props.status ? this.props.status : ''
     }
     activateEditMode = () => {
         this.setState({
@@ -19,6 +22,19 @@ class ProfileStatus extends React.Component<ProfileStatusType, LocalStateType> {
         this.setState({
             editMode:false
         })
+        this.props.updateStatus(this.state.status)
+    }
+    onChangeStatus = (e:ChangeEvent<HTMLInputElement>) =>{
+        this.setState({
+            status: e.currentTarget.value
+        })
+    }
+    componentDidUpdate(prevProps: Readonly<ProfileStatusType>, prevState: Readonly<LocalStateType>, snapshot?: any) {
+        if(this.props.status !== prevProps.status){
+            this.setState({
+                status:this.props.status ? this.props.status : ''
+            })
+        }
     }
 
     render() {
@@ -26,10 +42,15 @@ class ProfileStatus extends React.Component<ProfileStatusType, LocalStateType> {
             <>
                 {!this.state.editMode
                     ? <div>
-                        <span onClick={this.activateEditMode} >{this.props.status}</span>
+                        Status:
+                        {this.props.status
+                            ? <span onClick={this.activateEditMode}>{this.props.status}</span>
+                            : <span onClick={this.activateEditMode} style={{color: "gray"}} >{'Write your status here'}</span>
+                        }
                     </div>
                     : <div>
-                        <input autoFocus={true} onBlur={this.deactivateEditMode} defaultValue={this.props.status} />
+                        <input onChange={this.onChangeStatus} value={this.state.status} autoFocus={true}
+                               onBlur={this.deactivateEditMode} placeholder={this.props.status ? this.props.status : 'Write your status'} defaultValue={this.props.status}  />
                     </div>
                 }
 

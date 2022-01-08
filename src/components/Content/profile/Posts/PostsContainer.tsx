@@ -1,15 +1,9 @@
 import React from "react";
-import {
-    addLikeActionCreator,
-    newPostAddActionCreator,
-    newPostTextActionCreator,
-    ProfileStateType
-} from "../../../Redux/profileReducer";
+import {addLikeActionCreator, newPostAddActionCreator, newPostTextActionCreator} from "../../../Redux/profileReducer";
 import Posts from "./Posts";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 import {StateType} from "../../../Redux/redux-store";
-import {ProfilePropsType} from "../ProfileContainer";
 
 
 let mapStateToProps = (state:StateType) => {

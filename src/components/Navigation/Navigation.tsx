@@ -1,6 +1,5 @@
 import React from "react";
 import {NavLink} from "react-router-dom";
-import {getProfileThunkCreator} from "../Redux/profileReducer";
 import {connect} from "react-redux";
 
 const  Navigation = (props:any) => {

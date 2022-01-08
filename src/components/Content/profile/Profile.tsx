@@ -4,8 +4,10 @@ import PostsContainer from "./Posts/PostsContainer";
 import {ProfileType} from "../../Redux/profileReducer";
 
 
-export type PropsProfileType = {
+type PropsProfileType = {
     profile: ProfileType | null
+    status: string | undefined
+    updateStatus: (status:string)=> void
 }
 
 const Profile = (props:PropsProfileType) => {

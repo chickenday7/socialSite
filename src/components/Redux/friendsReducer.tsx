@@ -89,7 +89,7 @@ const friendsReducer = (state: FriendsStateType = initialState, action: actionTy
                 ...state,
                 isFollowing: state.isPreloader
                     ? [...state.isFollowing, action.id]
-                    : [...state.isFollowing.filter((id) => id != action.id)]
+                    : [...state.isFollowing.filter((id) => id !== action.id)]
             }
         }
         default:

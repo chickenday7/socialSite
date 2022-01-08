@@ -2,11 +2,15 @@ import React from "react";
 import userPhoto from "../../../../img/user/user.png"
 import Preloader from "../../../Preloader/Preloader";
 import ProfileStatus from "./ProfileStatus/ProfileStatus";
-import {PropsProfileType} from "../Profile";
+import {ProfileType} from "../../../Redux/profileReducer";
 
 
-const ProfileInfo = (props:PropsProfileType) => {
-    debugger
+type ProfileInfoProps = {
+    profile: ProfileType | null,
+    status: string | undefined
+    updateStatus: (status:string)=> void
+}
+const ProfileInfo = (props:ProfileInfoProps) => {
 
     if (props.profile !== null){
 
@@ -16,7 +20,7 @@ const ProfileInfo = (props:PropsProfileType) => {
             return newElem.join('')
         }).join(' ')
 
-
+        console.log(props.status)
         return (
             <div className={'profile'} >
                 <div className={'profile__photo'}>
@@ -24,7 +28,9 @@ const ProfileInfo = (props:PropsProfileType) => {
                 </div>
                 <div className={'descriptionProfile'}>
                     <div className={'descriptionProfile__nickname'}>{myName}</div>
-                    <ProfileStatus status={'Hello world!'} />
+                    <ProfileStatus status={props.status}
+                                    updateStatus={props.updateStatus}
+                    />
                     <div className={'descriptionProfile__status'}>About me:{props.profile.aboutMe}</div>
                 </div>
             </div>

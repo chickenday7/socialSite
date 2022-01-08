@@ -14,7 +14,6 @@ class HeaderAPI extends React.Component<any, any> {
     }
 
     render() {
-        debugger
         return (<Header {...this.props} />);
     }
 }
