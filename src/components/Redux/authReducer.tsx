@@ -1,31 +1,58 @@
 import {authAPI} from "../../API/api";
 import {Dispatch} from "redux";
 
+
 const SET_USER_DATA = "SET_USER_DATA"
+const LOG_OUT = 'LOG_OUT'
+const IN_PROGRESS = 'IN_PROGRESS'
+const RESULT_AUTH = 'RESULT_AUTH'
 
 
 let initialState = {
-    id:null,
-    email:null,
-    login:null,
-    isAuth:false,
-    isFetching:false
+    id: null,
+    email: null,
+    login: null,
+    isAuth: false,
+    isFetching: false
 }
-type AuthReducerType = {
+export type AuthReducerType = {
     id: number | null
     email: string | null
     login: string | null
     isAuth: boolean
     isFetching: boolean
 }
+type ActionType =
+    SetUserDataACType |
+    LogoutMeACType |
+    InProgressACType |
+    ResultAuthACType
 
-const authReducer = (state: AuthReducerType  = initialState, action: ActionType):AuthReducerType => {
+const authReducer = (state: AuthReducerType = initialState, action: ActionType): AuthReducerType => {
     switch (action.type) {
         case SET_USER_DATA:
             return {
                 ...state,
                 ...action.data,
                 isAuth: action.data.id !== undefined
+            }
+        case LOG_OUT:
+            return {
+                id: null,
+                email: null,
+                login: null,
+                isAuth: false,
+                isFetching: false
+            }
+        case IN_PROGRESS:
+            return {
+                ...state,
+                isFetching: action.stateFetching
+            }
+        case RESULT_AUTH:
+            return {
+                ...state,
+                isAuth: action.resultAuth
             }
         default:
             return state
@@ -35,27 +62,82 @@ const authReducer = (state: AuthReducerType  = initialState, action: ActionType)
 export default authReducer;
 
 
-export const authMeThunkCreator = () => {
-    return (dispatch:Dispatch) => {
-        authAPI.authMe()
-            .then((response) => {
-                let {id,email,login} = response.data
-                dispatch(setUserDataAC(id,email,login))
+export const logoutMeTC = () => {
+    return (dispatch: Dispatch) => {
+        authAPI.logout()
+            .then((res) => {
+                if (res.resultCode === 0) {
+                    dispatch(logoutMeAC())
+                }
             })
     }
 }
 
+export const authMeTC = () => {
+    return (dispatch: Dispatch) => {
+        authAPI.authMe()
+            .then((response) => {
+                let {id, email, login} = response.data
+                dispatch(setUserDataAC(id, email, login))
+            })
+    }
+}
 
-type ActionType =
-    SetUserDataACType
+export type LoginDataRequestType = {
+    email: string
+    password: string
+    rememberMe: boolean
+    captcha?: boolean | undefined
+}
+export const loginMeTC = (loginData: LoginDataRequestType) => {
+    return (dispatch: Dispatch) => {
+        dispatch(inProgressAC(true))
+        authAPI.login(loginData)
+            .then((res) => {
+                if (res.resultCode === 0) {
+                    authAPI.authMe()
+                        .then((response) => {
+                            let {id, email, login} = response.data
+                            dispatch(setUserDataAC(id, email, login))
+                            dispatch(resultAuthAC(true))
+                            dispatch(inProgressAC(false))
+                        })
 
 
+                }
+            })
+    }
+}
 
-type SetUserDataACType = {type: typeof SET_USER_DATA, data:{id:number,email:string,login:string}}
-export const setUserDataAC = (id:number, email:string, login:string):SetUserDataACType => {
+type InProgressACType = { type: typeof IN_PROGRESS, stateFetching: boolean }
+const inProgressAC = (stateFetching: boolean): InProgressACType => {
     return {
-        type:SET_USER_DATA,
-        data: {id:id,email:email,login:login}
+        type: IN_PROGRESS,
+        stateFetching
+    }
+}
+
+type LogoutMeACType = { type: typeof LOG_OUT }
+const logoutMeAC = (): LogoutMeACType => {
+    return {
+        type: LOG_OUT
+    }
+}
+
+type ResultAuthACType = { type: typeof RESULT_AUTH, resultAuth: boolean }
+const resultAuthAC = (resultAuth: boolean): ResultAuthACType => {
+    return {
+        type: RESULT_AUTH,
+        resultAuth
+    }
+}
+
+
+type SetUserDataACType = { type: typeof SET_USER_DATA, data: { id: number, email: string, login: string } }
+export const setUserDataAC = (id: number, email: string, login: string): SetUserDataACType => {
+    return {
+        type: SET_USER_DATA,
+        data: {id, email, login}
     }
 }
 

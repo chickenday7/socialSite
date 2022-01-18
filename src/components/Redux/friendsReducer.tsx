@@ -103,7 +103,6 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
         dispatch(togglePreloaderAC(true));
         usersAPI.getUsers(currentPage, pageSize)
             .then((response) => {
-
                 dispatch(setUsersAC(response.items));
                 dispatch(totalUsersAC(response.totalCount));
                 dispatch(togglePreloaderAC(false));

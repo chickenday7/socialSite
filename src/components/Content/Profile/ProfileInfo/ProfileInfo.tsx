@@ -20,7 +20,6 @@ const ProfileInfo = (props:ProfileInfoProps) => {
             return newElem.join('')
         }).join(' ')
 
-        console.log(props.status)
         return (
             <div className={'profile'} >
                 <div className={'profile__photo'}>

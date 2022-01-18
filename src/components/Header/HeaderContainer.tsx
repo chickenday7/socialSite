@@ -1,14 +1,12 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {authMeThunkCreator} from "../Redux/authReducer";
+import {authMeTC, AuthReducerType, logoutMeTC} from "../Redux/authReducer";
 import Header from "./Header";
+import {ThunkDispatch} from "redux-thunk";
+import {StateType} from "../Redux/redux-store";
 
-
-class HeaderAPI extends React.Component<any, any> {
-    constructor(props:any) {
-        super(props);
-    }
-
+type HeaderAPIType = MapStateToPropsType & MapDispatchToPropsType
+class HeaderAPI extends React.Component<HeaderAPIType> {
     componentDidMount() {
         this.props.authMe()
     }
@@ -17,22 +15,32 @@ class HeaderAPI extends React.Component<any, any> {
         return (<Header {...this.props} />);
     }
 }
-
-const mapStateToProps = (state:any) =>{
+type MapStateToPropsType = {
+    auth:AuthReducerType
+}
+const mapStateToProps = (state: StateType):MapStateToPropsType => {
     return {
         auth: state.auth
     }
 }
-const mapDispatchToProps = (dispatch:any) => {
-  return{
+
+type MapDispatchToPropsType = {
+    authMe:()=>void
+    logout:()=>void
+}
+const mapDispatchToProps = (dispatch:ThunkDispatch<any, any, any>):MapDispatchToPropsType => {
+    return {
         authMe: () => {
-            dispatch(authMeThunkCreator())
+            dispatch(authMeTC())
+        },
+        logout: () => {
+            dispatch(logoutMeTC())
         }
-  }
+    }
 }
 
 
-let HeaderContainer = connect(mapStateToProps,mapDispatchToProps)(HeaderAPI)
+let HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(HeaderAPI)
 
 export default HeaderContainer
 

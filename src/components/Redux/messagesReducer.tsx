@@ -10,7 +10,7 @@ type dialogsData = {
     id:number
     name:string
 }
-type messagesStateType = {
+export type messagesStateType = {
     messagesData: Array<messagesData>
     newMessageText:string
     dialogsData:Array<dialogsData>

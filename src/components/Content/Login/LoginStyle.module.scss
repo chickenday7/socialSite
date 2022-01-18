@@ -1,0 +1,17 @@
+.formWrapper{
+  display: flex;
+  flex-direction: column;
+  width: 230px;
+}
+.buttonWrapper{
+  margin-top: 5px;
+  width: 80px;
+  height: 30px;
+}
+.input{
+  margin-bottom: 5px;
+}
+.checkBox{
+  display: flex;
+  flex-direction: row;
+}

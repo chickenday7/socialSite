@@ -50,7 +50,7 @@ class ProfileStatus extends React.Component<ProfileStatusType, LocalStateType> {
                     </div>
                     : <div>
                         <input onChange={this.onChangeStatus} value={this.state.status} autoFocus={true}
-                               onBlur={this.deactivateEditMode} placeholder={this.props.status ? this.props.status : 'Write your status'} defaultValue={this.props.status}  />
+                               onBlur={this.deactivateEditMode} placeholder={this.props.status ? this.props.status : 'Write your status'} defaultValue={this.props.status}/>
                     </div>
                 }
 

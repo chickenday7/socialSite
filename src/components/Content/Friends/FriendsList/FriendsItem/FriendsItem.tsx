@@ -23,7 +23,7 @@ const FriendsItem = (props:FriendsItemType) => {
 
     return (
         <div className={'blockFriend'}>
-            <NavLink to={'/profile/' + props.user.id}>
+            <NavLink to={`/profile/${props.user.id}`}>
                 <div className={'blockFriend__photo'}>
                     <img src={props.user.photos.small !== null ? props.user.photos.small : userPhoto}/>
                 </div>

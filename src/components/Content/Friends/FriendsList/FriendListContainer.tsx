@@ -20,6 +20,7 @@ class FriendsListAPI extends React.Component<FriendsList> {
         this.props.getUsers(this.props.friendsPage.currentPage, this.props.friendsPage.pageSize)
     }
     onCurrentPage = (newCurrentPage: number) => {
+
         this.props.changePage(newCurrentPage, this.props.friendsPage.pageSize)
     }
 
@@ -37,6 +38,8 @@ class FriendsListAPI extends React.Component<FriendsList> {
                         pagesCount={pagesCount}
                         onCurrentPage={this.onCurrentPage}
                         {...this.props}
+                        currentPage={this.props.friendsPage.currentPage}
+
 
 
             />

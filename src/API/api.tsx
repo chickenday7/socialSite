@@ -1,4 +1,5 @@
 import axios from "axios";
+import {LoginDataRequestType} from "../components/Redux/authReducer";
 
 
 type ResponseType<T> = {
@@ -54,7 +55,6 @@ export const subscribeAPI = {
     }
 }
 
-
 type GetProfileType = {
     aboutMe: null | string
     contacts: {
@@ -85,7 +85,6 @@ export const profileAPI = {
         return instance.put<ResponseType<object>>(`/profile/status`, {status: status})
     }
 }
-console.log(profileAPI.getStatus(2))
 
 type DataAuthType = {
     id: number
@@ -97,6 +96,18 @@ export const authAPI = {
         return instance.get<ResponseType<DataAuthType>>('auth/me')
             .then((response) => {
                 return response.data
+            })
+    },
+    login({email,password,rememberMe,captcha}:LoginDataRequestType){
+        return instance.post<ResponseType<any>>('/auth/login',{email,password,rememberMe,captcha})
+            .then((res)=>{
+                return res.data
+            })
+    },
+    logout(){
+        return instance.delete<ResponseType<{userId:number}>>('/auth/login')
+            .then((res)=>{
+                return res.data
             })
     }
 }
