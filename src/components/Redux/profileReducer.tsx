@@ -5,8 +5,8 @@ const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
 const ADD_POST = 'ADD-POST';
 const ADD_LIKE = 'ADD-LIKE';
 const SET_PROFILE = 'SET-PROFILE';
-const SET_STATUS = 'SET-STATUS'
-const UPDATE_STATUS = 'UPDATE-STATUS'
+const SET_STATUS = 'SET-STATUS';
+const OWNER_CHECK = 'OWNER_CHECK'
 
 
 type PostsData = {
@@ -37,6 +37,7 @@ export type ProfileStateType = {
     newPostText: string
     profile: ProfileType | null
     status: string | undefined
+    isOwner: boolean
 }
 
 
@@ -49,14 +50,16 @@ let initialState: ProfileStateType = {
         ],
     newPostText: '',
     profile: null,
-    status: ''
+    status: '',
+    isOwner: false
 }
 type ActionType =
     NewPostAddAC |
     NewPostTextACType |
     AddLikeAC |
     SetProfileUserACType |
-    SetStatusACType
+    SetStatusACType |
+    OwnerCheckTypeAC
 
 
 const profileReducer = (state: ProfileStateType = initialState, action: ActionType): ProfileStateType => {
@@ -97,6 +100,11 @@ const profileReducer = (state: ProfileStateType = initialState, action: ActionTy
                 ...state,
                 status: action.textStatus
             }
+        case OWNER_CHECK:
+            return {
+                ...state,
+                isOwner: action.ownerID === action.urlProfileID
+            }
         default:
             return state
     }
@@ -125,13 +133,12 @@ export const updateStatusTC = (status: string) => {
     return (dispatch: Dispatch) => {
         profileAPI.updateStatus(status)
             .then((response) => {
-                if (response.data.resultCode === 0){
+                if (response.data.resultCode === 0) {
                     dispatch(setStatusAC(status))
                 }
             })
     }
 }
-
 
 
 type SetStatusACType = {
@@ -177,5 +184,14 @@ export const addLikeActionCreator = (id: number): AddLikeAC => {
     return {
         type: ADD_LIKE,
         id: id
+    }
+}
+
+type OwnerCheckTypeAC = { type: typeof OWNER_CHECK, urlProfileID: number, ownerID: number | null }
+export const ownerCheckAC = (urlProfileID: number, ownerID: number | null): OwnerCheckTypeAC => {
+    return {
+        type: OWNER_CHECK,
+        urlProfileID,
+        ownerID,
     }
 }

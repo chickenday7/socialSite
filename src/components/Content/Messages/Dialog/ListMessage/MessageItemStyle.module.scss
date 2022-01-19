@@ -1,0 +1,42 @@
+@import "src/scss/font/font";
+@import "src/scss/vars/vars";
+@import "src/scss/mixin/mixin";
+
+
+.wrapperMessage{
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0 10px 25px;
+  //border-top: black solid 1px;
+  &:nth-child(1){
+    border-top: orange solid 3px;
+  }
+}
+.blockMessage{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  & .photo{
+    width: 50px;
+    height: 50px;
+    border-radius: 100px;
+    background-color: blue;
+  }
+  & .text{
+    display: flex;
+    flex-direction: row;
+    margin: 0 10px;
+
+    flex-grow: 1;
+    border: $gray solid 1px;
+    border-radius: 10px;
+    padding: 5px 20px 5px 10px;
+    & > span {
+      font-family: Lexend-Regular;
+      color: #635e50;
+      font-size: 16px;
+      flex-grow: 1;
+    }
+  }
+}

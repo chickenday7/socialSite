@@ -39,7 +39,6 @@ export const usersAPI = {
             })
     },
 }
-
 export const subscribeAPI = {
     follow(id: number) {
         return instance.post<ResponseType<object>>(`follow/${id}`)

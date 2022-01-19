@@ -9,6 +9,7 @@ type ProfileInfoProps = {
     profile: ProfileType | null,
     status: string | undefined
     updateStatus: (status:string)=> void
+    isOwner:boolean
 }
 const ProfileInfo = (props:ProfileInfoProps) => {
 
@@ -23,12 +24,14 @@ const ProfileInfo = (props:ProfileInfoProps) => {
         return (
             <div className={'profile'} >
                 <div className={'profile__photo'}>
-                    <img src={props.profile.photos.large === null ? userPhoto : props.profile.photos.large} />
+                    <img alt={'userPhoto'} src={props.profile.photos.large === null ? userPhoto : props.profile.photos.large} />
                 </div>
                 <div className={'descriptionProfile'}>
                     <div className={'descriptionProfile__nickname'}>{myName}</div>
                     <ProfileStatus status={props.status}
                                     updateStatus={props.updateStatus}
+                                   isOwner={props.isOwner}
+
                     />
                     <div className={'descriptionProfile__status'}>About me:{props.profile.aboutMe}</div>
                 </div>

@@ -1,0 +1,36 @@
+@import "src/scss/font/font";
+@import "src/scss/vars/vars";
+@import "src/scss/mixin/mixin";
+
+
+
+.user{
+  display: flex;
+  flex-direction: row;
+  padding: 10px 0 10px 25px;
+  border-top: $gray solid 1px;
+  cursor: pointer;
+  &:nth-child(1){
+    border-top: $gray solid 2px;
+  }
+  &:nth-last-child(1){
+    border-bottom: $gray solid 1px;
+  }
+  &__name{
+    font-family: Lexend-Regular;
+    font-size: 20px;
+    color: $gray;
+    & > a{
+      text-decoration: none;
+      &:link{
+        color: $gray;
+      }
+      &:visited{
+        color: $gray;
+      }
+      &:hover{
+        color: orange;
+      }
+    }
+  }
+}

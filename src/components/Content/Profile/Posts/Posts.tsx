@@ -1,9 +1,7 @@
-import React, {FC} from "react";
+import React from "react";
 import AddPosts from "./AddPosts/AddPosts";
 import AddedPostsArray from "./AddedPosts/AddedPostsArray";
 import PostsTitle from "./PostsTitile/PostsTitle";
-
-
 
 
 const Posts:any = (props:any) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import {messagesStateType, newMessageAddActionCreator, newMessageTextActionCreator} from "../../Redux/messagesReducer";
+import {addMessageAC, MessagesStateType} from "../../Redux/messagesReducer";
 import Messages from "./Messages";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
@@ -17,33 +17,31 @@ class MessagesAPI extends React.Component<MessagesAPIType>{
 let authRedirectMessages = withAuthRedirect(MessagesAPI)
 
 
-
-
 type MapStateToPropsType = {
-    messagesPage: messagesStateType
+    messagesPage: MessagesStateType
 }
 let mapStateToProps = (state:StateType):MapStateToPropsType => {
     return {
         messagesPage: state.messagesPage,
-
     }
 }
 
 type MapDispatchToPropsType = {
-    addMessage:()=>void
-    updateMessageText:(text:string)=>void
+    addMessage:(message:string)=>void
 }
+
 let mapDispatchToProps = (dispatch:Dispatch):MapDispatchToPropsType => {
      return {
-        addMessage: () => {
-            dispatch(newMessageAddActionCreator())
-        },
-         updateMessageText: (text:string) => {
-            dispatch(newMessageTextActionCreator(text))
-         }
+        addMessage: (text) => {
+            dispatch(addMessageAC(text))
+        }
     }
 }
 
 
 const MessagesContainer = connect<MapStateToPropsType,MapDispatchToPropsType,{},StateType>(mapStateToProps, mapDispatchToProps)(authRedirectMessages)
+
+
+
+
 export default MessagesContainer;

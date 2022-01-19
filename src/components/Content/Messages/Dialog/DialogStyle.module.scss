@@ -1,0 +1,16 @@
+@import "src/scss/font/font";
+@import "src/scss/vars/vars";
+@import "src/scss/mixin/mixin";
+
+
+.wrapperDialog {
+  display: flex;
+  flex-direction: column;
+  & .title {
+    font-family: Lexend-Semibold;
+    display: flex;
+    margin: 15px auto;
+    font-size: 16px;
+    color: $gray;
+  }
+}

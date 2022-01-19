@@ -1,5 +1,4 @@
 import React from "react";
-
 import {LoginForm} from "./LoginForm";
 import {LoginDataRequestType} from "../../Redux/authReducer";
 
@@ -8,6 +7,8 @@ type LoginPropsType = {
     isFetching: boolean
     isAuth: boolean
     id:number | null
+    toggleError:(stateError:boolean)=>void
+    authError:boolean
 }
 const Login = (props: LoginPropsType) => {
 
@@ -18,6 +19,8 @@ const Login = (props: LoginPropsType) => {
                        isFetching={props.isFetching}
                        isAuth={props.isAuth}
                        id={props.id}
+                       toggleError={props.toggleError}
+                       authError={props.authError}
             />
         </div>
     )

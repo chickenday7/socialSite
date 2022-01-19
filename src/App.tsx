@@ -6,14 +6,10 @@ import {Route, Routes} from "react-router-dom";
 import MessagesContainer from "./components/Content/Messages/MessagesContainer";
 import Friends from "./components/Content/Friends/Friends";
 import ProfileContainer from "./components/Content/Profile/ProfileContainer";
-import Login from "./components/Content/Login/Login";
 import {LoginContainer} from "./components/Content/Login/LoginContainer";
 
 
-
-
-
-const App:any = () => {
+const App = () => {
     return (
             <div className={'app-wrapper'}>
                 <HeaderContainer />

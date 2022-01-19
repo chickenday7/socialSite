@@ -1,22 +1,21 @@
-import React,{FC, PropsWithChildren} from "react";
+import React from "react";
 import {NavLink} from "react-router-dom";
+import s from "./UserItemStyle.module.scss"
 
+interface IUserItemProps {
+    id: number
+    name: string
+}
 
+const UserItem = (props: IUserItemProps) => {
 
-let activeStyle:any = {             // тут надо спросить!!!!!!!!!!!!!!!!!!!//
-    textDecoration: "none",
-    color: "orange",
-};
-
-
-
-const UserItem:any = (props:any) =>{
-    return(
-        <div className={'user'}>
-            <div className={'user__name'}>
-                <NavLink to={"/messages/" + props.id} style = {({ isActive }) =>
-                    isActive ? activeStyle : undefined
-                }> {props.name}</NavLink>
+    return (
+        <div className={s.user}>
+            <div className={s.user__name}>
+                <NavLink to={"/messages/" + props.id}
+                         className={({isActive}) => isActive ? '' : ''}>
+                    {props.name}
+                </NavLink>
             </div>
         </div>
     )

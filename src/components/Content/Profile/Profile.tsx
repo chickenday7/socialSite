@@ -8,6 +8,7 @@ type PropsProfileType = {
     profile: ProfileType | null
     status: string | undefined
     updateStatus: (status:string)=> void
+    isOwner:boolean
 }
 
 const Profile = (props:PropsProfileType) => {

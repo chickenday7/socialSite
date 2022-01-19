@@ -7,6 +7,7 @@ type LocalStateType = {
 type ProfileStatusType = {
     status:string | undefined
     updateStatus: (status:string)=> void
+    isOwner:boolean
 }
 class ProfileStatus extends React.Component<ProfileStatusType, LocalStateType> {
     state:LocalStateType = {
@@ -14,9 +15,11 @@ class ProfileStatus extends React.Component<ProfileStatusType, LocalStateType> {
         status:this.props.status ? this.props.status : ''
     }
     activateEditMode = () => {
-        this.setState({
+        this.props.isOwner
+            ? this.setState({
             editMode:true
         })
+            : alert('Ты не можешь менять чужие сообщения')
     }
     deactivateEditMode = () => {
         this.setState({

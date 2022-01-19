@@ -17,7 +17,7 @@ const FriendsItem = (props:FriendsItemType) => {
     const onFollow = () => {
         props.follow(props.user.id)
     }
-    const checkDisable:boolean =  props.isFollowing.some((id:number) => id == props.user.id)
+    const checkDisable:boolean =  props.isFollowing.some((id:number) => id === props.user.id)
 
 
 
@@ -25,7 +25,7 @@ const FriendsItem = (props:FriendsItemType) => {
         <div className={'blockFriend'}>
             <NavLink to={`/profile/${props.user.id}`}>
                 <div className={'blockFriend__photo'}>
-                    <img src={props.user.photos.small !== null ? props.user.photos.small : userPhoto}/>
+                    <img alt={'userPhoto'} src={props.user.photos.small !== null ? props.user.photos.small : userPhoto}/>
                 </div>
             </NavLink>
             <div className={'blockFriend__description'}>

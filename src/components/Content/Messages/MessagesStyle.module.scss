@@ -1,0 +1,23 @@
+@import "src/scss/font/font";
+@import "src/scss/vars/vars";
+@import "src/scss/mixin/mixin";
+
+
+.wrapperMessages{
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+  height: 100%;
+  border: $gray solid 1px;
+  border-radius: 25px;
+
+}
+
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 70%;
+  //background-color: red;
+}

@@ -6,6 +6,7 @@ const SET_USER_DATA = "SET_USER_DATA"
 const LOG_OUT = 'LOG_OUT'
 const IN_PROGRESS = 'IN_PROGRESS'
 const RESULT_AUTH = 'RESULT_AUTH'
+const TOGGLE_ERROR = 'TOGGLE_ERROR'
 
 
 let initialState = {
@@ -13,7 +14,8 @@ let initialState = {
     email: null,
     login: null,
     isAuth: false,
-    isFetching: false
+    isFetching: false,
+    authError:false,
 }
 export type AuthReducerType = {
     id: number | null
@@ -21,12 +23,14 @@ export type AuthReducerType = {
     login: string | null
     isAuth: boolean
     isFetching: boolean
+    authError:boolean
 }
 type ActionType =
     SetUserDataACType |
     LogoutMeACType |
     InProgressACType |
-    ResultAuthACType
+    ResultAuthACType |
+    ToggleErrorAC
 
 const authReducer = (state: AuthReducerType = initialState, action: ActionType): AuthReducerType => {
     switch (action.type) {
@@ -42,7 +46,8 @@ const authReducer = (state: AuthReducerType = initialState, action: ActionType):
                 email: null,
                 login: null,
                 isAuth: false,
-                isFetching: false
+                isFetching: false,
+                authError:false
             }
         case IN_PROGRESS:
             return {
@@ -53,6 +58,11 @@ const authReducer = (state: AuthReducerType = initialState, action: ActionType):
             return {
                 ...state,
                 isAuth: action.resultAuth
+            }
+        case TOGGLE_ERROR:
+            return {
+                ...state,
+                authError:action.stateError
             }
         default:
             return state
@@ -102,8 +112,9 @@ export const loginMeTC = (loginData: LoginDataRequestType) => {
                             dispatch(resultAuthAC(true))
                             dispatch(inProgressAC(false))
                         })
-
-
+                }else{
+                    dispatch(toggleErrorAC(true))
+                    dispatch(inProgressAC(false))
                 }
             })
     }
@@ -134,11 +145,19 @@ const resultAuthAC = (resultAuth: boolean): ResultAuthACType => {
 
 
 type SetUserDataACType = { type: typeof SET_USER_DATA, data: { id: number, email: string, login: string } }
-export const setUserDataAC = (id: number, email: string, login: string): SetUserDataACType => {
+const setUserDataAC = (id: number, email: string, login: string): SetUserDataACType => {
     return {
         type: SET_USER_DATA,
         data: {id, email, login}
     }
+}
+
+export type ToggleErrorAC = {type: typeof TOGGLE_ERROR, stateError:boolean}
+export const toggleErrorAC = (stateError:boolean):ToggleErrorAC => {
+  return{
+      type:TOGGLE_ERROR,
+      stateError
+  }
 }
 
 

@@ -13,12 +13,12 @@ let mapStateToProps = (state:StateType) => {
 }
 
 
-type mapDispatchToProps = {
+type MapDispatchToPropsType = {
     addLike: (idMessage:number)=> void
     addPost: () => void
     postChange: (text:string) => void
 }
-let mapDispatchToProps = (dispatch:Dispatch):mapDispatchToProps => {
+let mapDispatchToProps = (dispatch:Dispatch):MapDispatchToPropsType => {
     return {
         addLike: (idMessage) => {
             dispatch(addLikeActionCreator(idMessage))

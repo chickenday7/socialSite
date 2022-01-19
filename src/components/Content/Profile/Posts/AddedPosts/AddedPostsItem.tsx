@@ -13,7 +13,7 @@ const AddedPostsItem:any = (props:any) =>{
     return(
         <div className={'posts__item'}>
             <div className={'patternPosts'}>
-                <img className={'patternPosts__photo'} src={user}/>
+                <img alt={'userPhoto'} className={'patternPosts__photo'} src={user}/>
                 <div className={'patternPosts__text'}>{props.news}</div>
                 <div ref={likeArea} id={props.id} onClick={onAddLike} className={'patternPosts__like'}>like: {props.like}</div>
             </div>

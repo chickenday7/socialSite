@@ -1,20 +1,22 @@
-import React,{FC, PropsWithChildren} from "react";
+import React from "react";
 import Users from "./Users/Users";
-import Dialog__messages from "./DIalog__messages/Dialog__messages";
+import Dialog from "./Dialog/Dialog";
+import {MessagesStateType} from "../../Redux/messagesReducer";
+import s from "./MessagesStyle.module.scss"
 
-
-const Messages:any = (props:any) => {
+interface IMessagesProps{
+    messagesPage: MessagesStateType
+    addMessage:(text:string)=>void
+}
+const Messages = (props:IMessagesProps) => {
     return(
-        <div className={'dialogs'}>
-            <div className={'dialogs__users'}>
-                <Users dialogsData={props.messagesPage.dialogsData} />
-            </div>
-            <div className={'dialogs__messages'}>
-                <Dialog__messages
-                    messagesData={props.messagesPage.messagesData}
-                    newMessageText = {props.messagesPage.newMessageText}
+        <div className={s.wrapperMessages}>
+                <Users arrayUsers={props.messagesPage.arrayUsers} />
+            <div className={s.messages}>
+                <Dialog
+                    messageData={props.messagesPage.messageData}
                     addMessage = {props.addMessage}
-                    updateMessageText = {props.updateMessageText}
+
                 />
             </div>
         </div>
