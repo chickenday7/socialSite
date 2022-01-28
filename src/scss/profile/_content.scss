@@ -18,15 +18,13 @@
 .profile {
   display: flex;
   flex-direction: row;
-  height: 500px;
+
   width: 100%;
 
   &__photo {
     width: 196px;
-    border: black solid 1px;
     height: 196px;
     border-radius: 100px;
-    background-color: blue;
     & > img {
       width: 196px;
       height: 196px;
@@ -35,23 +33,23 @@
   }
 }
 
-.descriptionProfile {
-  //border: black solid 1px;
-  flex-grow: 1;
-  //background-color: aquamarine;
-  padding-left: 20px;
-    &__nickname{
-      font-family: Lexend-Semibold;
-      font-size: 24px;
-      color: $gray;
-    }
-    &__status{
-    font-family: Lexend-Regular;
-      font-size: 18px;
-      color: $gray;
-      padding-top: 15px;
-    }
-}
+//.descriptionProfile {
+//  //border: black solid 1px;
+//  flex-grow: 1;
+//  //background-color: aquamarine;
+//  padding-left: 20px;
+//    &__nickname{
+//      font-family: Lexend-Semibold;
+//      font-size: 24px;
+//      color: $gray;
+//    }
+//    &__status{
+//    font-family: Lexend-Regular;
+//      font-size: 18px;
+//      color: $gray;
+//      padding-top: 15px;
+//    }
+//}
 
 .posts {
   display: flex;

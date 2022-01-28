@@ -1,0 +1,22 @@
+@import "src/scss/font/font";
+@import "src/scss/vars/vars";
+@import "src/scss/mixin/mixin";
+
+.wrapperFullInfo{
+
+}
+.itemProfileInfo{
+  padding-top: 3px ;
+}
+.itemContacts{
+  padding-left: 15px;
+}
+.titleItem{
+  font-family: Lexend-Medium;
+  color: $gray;
+}
+.descriptionItem{
+  font-family: Lexend-Light;
+  color: $gray;
+  padding-left: 5px;
+}

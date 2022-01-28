@@ -1,0 +1,23 @@
+@import "src/scss/font/font";
+@import "src/scss/vars/vars";
+@import "src/scss/mixin/mixin";
+
+
+
+.wrapperStatus{
+  padding: 5px 0 15px;
+}
+.title{
+  font-family: Lexend-Medium;
+  font-size: 16px;
+  color: $gray;
+}
+.statusText{
+  padding-left: 5px;
+  font-family: Lexend-Light;
+  font-size: 16px;
+  color: $gray;
+}
+.statusTextMiss{
+
+}

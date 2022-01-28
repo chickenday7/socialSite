@@ -10,7 +10,7 @@ interface IUserItemProps {
 const UserItem = (props: IUserItemProps) => {
 
     return (
-        <div className={s.user}>
+        <div className={s.user} key={props.id}>
             <div className={s.user__name}>
                 <NavLink to={"/messages/" + props.id}
                          className={({isActive}) => isActive ? '' : ''}>

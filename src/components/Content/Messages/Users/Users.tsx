@@ -13,7 +13,7 @@ const Users = (props: IUsersProps) => {
 
     let arrayUsers: React.ReactNode = props.arrayUsers
         ? props.arrayUsers.map((elem) => {
-            return <UserItem name={elem.name} id={elem.id}/>;
+            return <UserItem name={elem.name} id={elem.id} key={elem.id}/>;
         })
         : <UserItem name={'Test User'} id={999}/>
 

@@ -3,18 +3,17 @@ import {addMessageAC, MessagesStateType} from "../../Redux/messagesReducer";
 import Messages from "./Messages";
 import {connect} from "react-redux";
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
-import {Dispatch} from "redux";
+import {compose, Dispatch} from "redux";
 import {StateType} from "../../Redux/redux-store";
 
 
 type MessagesAPIType = MapStateToPropsType & MapDispatchToPropsType
-class MessagesAPI extends React.Component<MessagesAPIType>{
+class MessagesContainer extends React.Component<MessagesAPIType>{
 
     render() {
         return (<Messages {...this.props} />);
     }
 }
-let authRedirectMessages = withAuthRedirect(MessagesAPI)
 
 
 type MapStateToPropsType = {
@@ -39,9 +38,9 @@ let mapDispatchToProps = (dispatch:Dispatch):MapDispatchToPropsType => {
 }
 
 
-const MessagesContainer = connect<MapStateToPropsType,MapDispatchToPropsType,{},StateType>(mapStateToProps, mapDispatchToProps)(authRedirectMessages)
 
+export default compose<React.ComponentType>(
+    connect<MapStateToPropsType,MapDispatchToPropsType,{},StateType>(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+)(MessagesContainer)
 
-
-
-export default MessagesContainer;

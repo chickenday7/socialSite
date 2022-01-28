@@ -15,6 +15,7 @@ const ListMessages = (props: IListMessages) => {
                 ? props.messageData.map((elem) => {
                 return <MessageItem message={elem.message}
                                     id={elem.id}
+                                    key={elem.id}
                 />
             })
                 : <span>You have no messages</span>

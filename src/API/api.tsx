@@ -54,6 +54,24 @@ export const subscribeAPI = {
     }
 }
 
+
+type EditProfileType = {
+    userId: number
+    lookingForAJob: boolean
+    lookingForAJobDescription: null | string
+    fullName: string
+    aboutMe: null | string
+    contacts: {
+        facebook: null | string
+        github: null | string
+        instagram: null | string
+        mainLink: null | string
+        twitter: null | string
+        vk: null | string
+        website: null | string
+        youtube: null | string
+    }
+}
 type GetProfileType = {
     aboutMe: null | string
     contacts: {
@@ -81,7 +99,15 @@ export const profileAPI = {
             .then(response => response.data)
     },
     updateStatus(status: string) {
-        return instance.put<ResponseType<object>>(`/profile/status`, {status: status})
+        return instance.put<ResponseType<{status:string}>>(`profile/status`, {status: status})
+    },
+    editProfile(data:EditProfileType){
+        console.log(data)
+        return instance.put<ResponseType<EditProfileType>>('profile', data)
+            .then((response)=>{
+                console.log(response)
+                return response.data
+            })
     }
 }
 

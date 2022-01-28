@@ -1,8 +1,9 @@
 import React from "react";
-import userPhoto from "../../../../img/user/user.png"
 import Preloader from "../../../Preloader/Preloader";
-import ProfileStatus from "./ProfileStatus/ProfileStatus";
 import {ProfileType} from "../../../Redux/profileReducer";
+import {ProfilePhoto} from "./ProfilePhoto/ProfilePhoto";
+import {ProfileDescription} from "./ProfileDescription/ProfileDescription";
+
 
 
 type ProfileInfoProps = {
@@ -10,31 +11,21 @@ type ProfileInfoProps = {
     status: string | undefined
     updateStatus: (status:string)=> void
     isOwner:boolean
+    ownerID:number
 }
 const ProfileInfo = (props:ProfileInfoProps) => {
 
     if (props.profile !== null){
-
-        const myName = props.profile.fullName.split(' ').map((elem:string)=>{
-            let newElem = elem.split('')
-            newElem[0] = newElem[0].toUpperCase()
-            return newElem.join('')
-        }).join(' ')
-
         return (
             <div className={'profile'} >
-                <div className={'profile__photo'}>
-                    <img alt={'userPhoto'} src={props.profile.photos.large === null ? userPhoto : props.profile.photos.large} />
-                </div>
-                <div className={'descriptionProfile'}>
-                    <div className={'descriptionProfile__nickname'}>{myName}</div>
-                    <ProfileStatus status={props.status}
+                <ProfilePhoto photos={props.profile.photos} />
+                <ProfileDescription profile={props.profile}
+                                    status={props.status}
                                     updateStatus={props.updateStatus}
-                                   isOwner={props.isOwner}
+                                    isOwner={props.isOwner}
+                                    ownerID={props.ownerID}
 
-                    />
-                    <div className={'descriptionProfile__status'}>About me:{props.profile.aboutMe}</div>
-                </div>
+                />
             </div>
         )
     }else{

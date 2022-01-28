@@ -4,6 +4,7 @@ import messagesReducer from "./messagesReducer";
 import friendsReducer from "./friendsReducer";
 import authReducer from "./authReducer";
 import thunkMiddle from "redux-thunk";
+import {appReducer} from "./appReducer";
 
 
 
@@ -13,13 +14,14 @@ let bigReducer = combineReducers({
     profilePage: profileReducer,
     messagesPage: messagesReducer,
     friendsPage: friendsReducer,
-    auth:authReducer
+    auth:authReducer,
+    app:appReducer
 });
 
 export type StateType = ReturnType<typeof bigReducer>
 
 
-export let store:any = createStore(bigReducer,applyMiddleware(thunkMiddle))
+export let store = createStore(bigReducer,applyMiddleware(thunkMiddle))
 
 
 

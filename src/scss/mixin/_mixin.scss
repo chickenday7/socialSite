@@ -51,11 +51,9 @@
   flex-direction: row;
   height: 80px;
   &__photo{
-    border: black solid 1px;
     border-radius: 80px;
     width: 80px;
     height: 80px ;
-    background-color: blue;
   }
   &__text{
     flex-grow: 1;

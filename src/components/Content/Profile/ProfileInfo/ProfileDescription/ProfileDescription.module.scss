@@ -1,0 +1,44 @@
+@import "src/scss/font/font";
+@import "src/scss/vars/vars";
+@import "src/scss/mixin/mixin";
+
+
+.wrapperDescription {
+  flex-grow: 1;
+  padding-left: 20px;
+}
+.headerDescription {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.titleItem{
+  font-family: Lexend-Medium;
+  color: $gray;
+}
+.descriptionItem{
+  font-family: Lexend-Light;
+  color: $gray;
+  padding-left: 5px;
+}
+
+.profileName{
+  font-family: Lexend-Semibold;
+  font-size: 24px;
+  color: $gray;
+}
+.profileEdit{
+  font-family: Lexend-Light;
+  font-size: 16px;
+  color: $gray;
+  margin-right: 15px;
+  cursor: pointer;
+}
+.profileEdit:hover{
+  font-family: Lexend-Light;
+  font-size: 16px;
+  color: $gray;
+  margin-right: 15px;
+  cursor: pointer;
+  text-decoration: underline;
+}

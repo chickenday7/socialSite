@@ -44,7 +44,6 @@ export const LoginForm = (props: LoginFormPropsType) => {
                 ? <Preloader />
                 : <form className={s.formWrapper} onSubmit={handleSubmit(onSubmit)}>
                     <label>Login</label>
-
                     <input onClick={checkChanged} placeholder={'Login'} className={s.input}
                            defaultValue={''} {...register('email', {required: true})}/>
                     {errors.email && <span>This field is required</span>}

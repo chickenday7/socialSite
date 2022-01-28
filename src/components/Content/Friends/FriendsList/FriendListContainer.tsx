@@ -1,5 +1,4 @@
 import React from "react";
-
 import {connect} from "react-redux";
 import {
     changePageThunkCreator,
@@ -11,11 +10,11 @@ import {
 import FriendList from "./FriendList";
 import {ThunkDispatch} from "redux-thunk";
 import {StateType} from "../../../Redux/redux-store";
-
+import {compose} from "redux";
 
 
 type FriendsList = MapDispatchToPropsType & MapStateToPropsType
-class FriendsListAPI extends React.Component<FriendsList> {
+class FriendListContainer extends React.Component<FriendsList> {
     componentDidMount() {
         this.props.getUsers(this.props.friendsPage.currentPage, this.props.friendsPage.pageSize)
     }
@@ -39,8 +38,6 @@ class FriendsListAPI extends React.Component<FriendsList> {
                         onCurrentPage={this.onCurrentPage}
                         {...this.props}
                         currentPage={this.props.friendsPage.currentPage}
-
-
 
             />
         )
@@ -82,6 +79,10 @@ let mapDispatchToProps = (dispatch: ThunkDispatch<any, any, any>):MapDispatchToP
 }
 
 
-const FriendsListContainer = connect<MapStateToPropsType,MapDispatchToPropsType,{},StateType>(mapStateToProps, mapDispatchToProps)(FriendsListAPI)
 
-export default FriendsListContainer
+
+
+
+export default compose<React.ComponentType>(
+    connect<MapStateToPropsType,MapDispatchToPropsType,{},StateType>(mapStateToProps, mapDispatchToProps)
+)(FriendListContainer)

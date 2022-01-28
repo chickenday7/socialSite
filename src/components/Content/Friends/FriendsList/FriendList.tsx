@@ -20,7 +20,6 @@ type FriendListType = {
 let FriendList = (props: FriendListType) => {
 
 
-
     return (
         <>
             <div className={'myFriends__list'}>

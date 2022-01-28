@@ -4,7 +4,6 @@ import {AuthReducerType} from "../Redux/authReducer";
 
 type HeaderPropsType = {
     auth:AuthReducerType
-    authMe:()=>void
     logout:()=>void
 }
 

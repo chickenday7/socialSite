@@ -1,0 +1,70 @@
+.checkbox {
+  appearance: none;
+}
+
+.spanClassName {
+  user-select: none;
+}
+.label{
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+}
+
+.divCheckboxTrue{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: rgba(192, 44, 70, 0.5) 1px solid;
+  border-radius: 50%;
+  &:hover{
+    border: rgba(192, 44, 70, 0.7) 1px solid;
+  }
+  &:active{
+    border: rgba(192, 44, 70, 0.9) 1px solid;
+  }
+}
+
+.divCheckboxFalse{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: rgba(112, 115, 124, 0.5) 1px solid;
+  border-radius: 50%;
+  &:hover{
+    border: rgba(112, 115, 124, 0.7) 1px solid;
+  }
+  &:active{
+    border: rgba(112, 115, 124, 0.9) 1px solid;
+  }
+}
+.circFalse{
+  width: 100%;
+  height: 100%;
+  position: center;
+  border-radius: 50%;
+}
+.circTrue{
+  width: 90%;
+  height: 90%;
+  background: rgba(192, 44, 70, 0.5);
+  position: center;
+  border-radius: 50%;
+  &:hover{
+    background: rgba(192, 44, 70, 0.7);
+  }
+  &:active{
+    background: rgba(192, 44, 70, 0.9)
+  }
+}
+.circTrueHover{
+  width: 90%;
+  height: 90%;
+  background: rgba(192, 44, 70, 0.7);
+  position: center;
+  border-radius: 50%;
+}

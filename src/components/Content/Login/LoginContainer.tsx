@@ -4,9 +4,10 @@ import {connect} from "react-redux";
 import {ThunkDispatch} from "redux-thunk";
 import {LoginDataRequestType, loginMeTC, ToggleErrorAC, toggleErrorAC} from "../../Redux/authReducer";
 import {StateType} from "../../Redux/redux-store";
+import {compose} from "redux";
 
-type LoginContainerWithContextType = MapDispatchToPropsType & MapStateToProps
-const LoginContainerWithContext = (props:LoginContainerWithContextType) => {
+type LoginContainerType = MapDispatchToPropsType & MapStateToProps
+const LoginContainer = (props:LoginContainerType) => {
 
     return <Login {...props}  />
 }
@@ -41,7 +42,10 @@ const mapStateToProps = (state:StateType):MapStateToProps => {
   }
 }
 
-export const LoginContainer = connect<MapStateToProps,MapDispatchToPropsType,{},StateType>(mapStateToProps,mapDispatchToProps)(LoginContainerWithContext)
 
+
+export default compose(
+    connect<MapStateToProps,MapDispatchToPropsType,{},StateType>(mapStateToProps,mapDispatchToProps),
+)(LoginContainer)
 
 

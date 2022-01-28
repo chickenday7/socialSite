@@ -15,7 +15,7 @@ let initialState = {
     login: null,
     isAuth: false,
     isFetching: false,
-    authError:false,
+    authError: false,
 }
 export type AuthReducerType = {
     id: number | null
@@ -23,7 +23,7 @@ export type AuthReducerType = {
     login: string | null
     isAuth: boolean
     isFetching: boolean
-    authError:boolean
+    authError: boolean
 }
 type ActionType =
     SetUserDataACType |
@@ -37,8 +37,7 @@ const authReducer = (state: AuthReducerType = initialState, action: ActionType):
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.data,
-                isAuth: action.data.id !== undefined
+                ...action.data
             }
         case LOG_OUT:
             return {
@@ -47,7 +46,7 @@ const authReducer = (state: AuthReducerType = initialState, action: ActionType):
                 login: null,
                 isAuth: false,
                 isFetching: false,
-                authError:false
+                authError: false
             }
         case IN_PROGRESS:
             return {
@@ -62,7 +61,7 @@ const authReducer = (state: AuthReducerType = initialState, action: ActionType):
         case TOGGLE_ERROR:
             return {
                 ...state,
-                authError:action.stateError
+                authError: action.stateError
             }
         default:
             return state
@@ -85,10 +84,10 @@ export const logoutMeTC = () => {
 
 export const authMeTC = () => {
     return (dispatch: Dispatch) => {
-        authAPI.authMe()
+        return authAPI.authMe()
             .then((response) => {
                 let {id, email, login} = response.data
-                dispatch(setUserDataAC(id, email, login))
+                dispatch(setUserDataAC(id, email, login, true))
             })
     }
 }
@@ -108,11 +107,11 @@ export const loginMeTC = (loginData: LoginDataRequestType) => {
                     authAPI.authMe()
                         .then((response) => {
                             let {id, email, login} = response.data
-                            dispatch(setUserDataAC(id, email, login))
+                            dispatch(setUserDataAC(id, email, login, true))
                             dispatch(resultAuthAC(true))
                             dispatch(inProgressAC(false))
                         })
-                }else{
+                } else {
                     dispatch(toggleErrorAC(true))
                     dispatch(inProgressAC(false))
                 }
@@ -144,20 +143,21 @@ const resultAuthAC = (resultAuth: boolean): ResultAuthACType => {
 }
 
 
-type SetUserDataACType = { type: typeof SET_USER_DATA, data: { id: number, email: string, login: string } }
-const setUserDataAC = (id: number, email: string, login: string): SetUserDataACType => {
+type SetUserDataACType = { type: typeof SET_USER_DATA, data: { id: number, email: string, login: string, isAuth: boolean } }
+export const setUserDataAC = (id: number, email: string, login: string, isAuth: boolean): SetUserDataACType => {
     return {
         type: SET_USER_DATA,
-        data: {id, email, login}
+        data: {id, email, login, isAuth},
+
     }
 }
 
-export type ToggleErrorAC = {type: typeof TOGGLE_ERROR, stateError:boolean}
-export const toggleErrorAC = (stateError:boolean):ToggleErrorAC => {
-  return{
-      type:TOGGLE_ERROR,
-      stateError
-  }
+export type ToggleErrorAC = { type: typeof TOGGLE_ERROR, stateError: boolean }
+export const toggleErrorAC = (stateError: boolean): ToggleErrorAC => {
+    return {
+        type: TOGGLE_ERROR,
+        stateError
+    }
 }
 
 

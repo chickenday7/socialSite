@@ -16,7 +16,6 @@ const Messages = (props:IMessagesProps) => {
                 <Dialog
                     messageData={props.messagesPage.messageData}
                     addMessage = {props.addMessage}
-
                 />
             </div>
         </div>
