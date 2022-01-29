@@ -55,7 +55,7 @@ export const subscribeAPI = {
 }
 
 
-type EditProfileType = {
+export type EditProfileType = {
     userId: number
     lookingForAJob: boolean
     lookingForAJobDescription: null | string
@@ -101,11 +101,15 @@ export const profileAPI = {
     updateStatus(status: string) {
         return instance.put<ResponseType<{status:string}>>(`profile/status`, {status: status})
     },
-    editProfile(data:EditProfileType){
-        console.log(data)
-        return instance.put<ResponseType<EditProfileType>>('profile', data)
+    editProfile(profile:EditProfileType){
+        return instance.put<ResponseType<EditProfileType>>('profile', profile)
             .then((response)=>{
-                console.log(response)
+                return response.data
+            })
+    },
+    uploadProfilePhoto(image:object){
+        return instance.put('/profile/photo',image)
+            .then((response)=>{
                 return response.data
             })
     }

@@ -35,9 +35,6 @@ export const LoginForm = (props: LoginFormPropsType) => {
     if (props.isAuth) {
         return <Navigate to={`/profile/${props.id}`}/>
     }
-
-
-
     return (
         <>
             {props.isFetching

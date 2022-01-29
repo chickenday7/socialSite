@@ -39,6 +39,7 @@ class App extends React.Component<AppPropsType, {}> {
                                 <Route path={"/login/*"} element={<LoginContainer/>}/>
                             </Routes>
                         </div>
+                        <div className={'footer'}></div>
                     </div>
                 }
 

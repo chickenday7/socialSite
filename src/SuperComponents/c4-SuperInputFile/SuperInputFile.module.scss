@@ -1,0 +1,68 @@
+.wrapperButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(112, 115, 124, 0.5);
+  border: rgba(112, 115, 124, 0.5) 1px solid;
+  border-radius: 3px;
+  cursor: pointer;
+  user-select: none;
+  &:hover{
+    background: rgba(112, 115, 124, 0.7);
+  }
+  &:active{
+    background: rgba(112, 115, 124, 0.9);
+  }
+}
+.wrapperButtonDis{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(112, 115, 124, 0.5);
+  border: rgba(112, 115, 124, 0.5) 1px solid;
+  border-radius: 3px;
+  cursor: pointer;
+  user-select: none;
+}
+
+
+.defaultDis {
+  border: none;
+  outline: none;
+  background: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  user-select: none;
+  color: #70737c;
+}
+.default {
+  border: none;
+  outline: none;
+  background: rgba(0, 0, 0, 0);
+  cursor: pointer;
+  user-select: none;
+}
+
+.red {
+  background: rgba(192, 44, 70, 0.5);
+  border: rgba(112, 115, 124, 0.5) 1px solid;
+  border-radius: 3px;
+  cursor: pointer;
+  user-select: none;
+  &:hover{
+    background: rgba(192, 44, 70, 0.7);
+  }
+  &:active{
+    background: rgba(192, 44, 70, 0.9);
+  }
+}
+.redDis{
+  background: rgba(192, 44, 70, 0.5);
+  border: rgba(112, 115, 124, 0.5) 1px solid;
+  border-radius: 3px;
+  cursor: pointer;
+  user-select: none;
+}
+.input{
+  z-index: 5;
+  visibility: hidden;
+}

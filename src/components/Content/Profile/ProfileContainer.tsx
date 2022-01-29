@@ -1,13 +1,21 @@
 import React from "react";
 import {connect} from "react-redux";
 import Profile from "./Profile";
-import {ownerCheckAC, ProfileType, setProfileTC, setStatusTC, updateStatusTC} from "../../Redux/profileReducer";
+import {
+    editProfileTC,
+    ownerCheckAC,
+    ProfileType,
+    setProfileTC,
+    setStatusTC,
+    updateStatusTC, uploadProfilePhotoTC
+} from "../../Redux/profileReducer";
 import {Params} from "react-router-dom";
 import {StateType} from "../../Redux/redux-store";
 import {ThunkDispatch} from "redux-thunk";
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 import {Location} from "history";
 import {compose} from "redux";
+import {EditProfileType} from "../../../API/api";
 
 export type ProfilePropsType = mapDispatchToPropsType & mapStateToPropsType & { router: Params, location: Location }
 type LocalStateType = {
@@ -41,6 +49,8 @@ class ProfileContainer extends React.Component<ProfilePropsType, LocalStateType>
                          updateStatus={this.props.updateStatus}
                          isOwner={this.props.isOwner}
                          ownerID={this.props.ownerID!}
+                         editProfile={this.props.editProfile}
+                         uploadProfilePhoto={this.props.uploadProfilePhoto}
             />
         )
     }
@@ -68,6 +78,8 @@ type mapDispatchToPropsType = {
     setStatus: (userID: number) => void
     updateStatus: (status: string) => void
     ownerCheckAC: (urlProfileID: number, ownerID: number | null) => void
+    editProfile:(profile:EditProfileType,ownerId:number)=>void
+    uploadProfilePhoto:(photo:File,ownerId:number)=>void
 }
 let mapDispatchToProps = (dispatch: ThunkDispatch<any, any, any>): mapDispatchToPropsType => {
     return {
@@ -82,6 +94,12 @@ let mapDispatchToProps = (dispatch: ThunkDispatch<any, any, any>): mapDispatchTo
         },
         ownerCheckAC: (urlProfileID, ownerID) => {
             dispatch(ownerCheckAC(urlProfileID, ownerID))
+        },
+        editProfile:(profile,ownerId) => {
+            dispatch(editProfileTC(profile,ownerId))
+        },
+        uploadProfilePhoto:(photo,ownerId)=>{
+            dispatch(uploadProfilePhotoTC(photo,ownerId))
         }
 
     }

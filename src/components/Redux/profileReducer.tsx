@@ -1,5 +1,8 @@
-import {profileAPI} from "../../API/api";
+import {EditProfileType, profileAPI} from "../../API/api";
 import {Dispatch} from "redux";
+import {ThunkDispatch} from "redux-thunk";
+import {StateType} from "./redux-store";
+import append from "react-hook-form/dist/utils/append";
 
 const UPDATE_POST_TEXT = 'UPDATE-POST-TEXT';
 const ADD_POST = 'ADD-POST';
@@ -135,6 +138,30 @@ export const updateStatusTC = (status: string) => {
             .then((response) => {
                 if (response.data.resultCode === 0) {
                     dispatch(setStatusAC(status))
+                }
+            })
+    }
+}
+
+export const editProfileTC = (profile: EditProfileType, ownerId: number) => {
+    return (dispatch: ThunkDispatch<StateType, unknown, ActionType>) => {
+        profileAPI.editProfile(profile)
+            .then((response) => {
+                if (response.resultCode === 0) {
+                    dispatch(setProfileTC(ownerId))
+                }
+            })
+    }
+}
+
+export const uploadProfilePhotoTC = (photo: File, ownerId: number) => {
+    return (dispatch: ThunkDispatch<StateType, unknown, ActionType>) => {
+        let formData = new FormData()
+        formData.append('image', photo)
+        profileAPI.uploadProfilePhoto(formData)
+            .then(response => {
+                if (response.data.photos.large !== null) {
+                    dispatch(setProfileTC(ownerId))
                 }
             })
     }

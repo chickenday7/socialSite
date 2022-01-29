@@ -5,8 +5,7 @@ import {FullInfo} from "./FullInfo/FullInfo";
 import s from './ProfileDescription.module.scss'
 import {EditProfileForm} from "./EditProfileForm/EditProfileForm";
 import SuperButton from "../../../../../SuperComponents/c2-SuperButton/SuperButton";
-
-
+import {EditProfileType} from "../../../../../API/api";
 
 
 type AboutProfilePropsType = {
@@ -14,7 +13,8 @@ type AboutProfilePropsType = {
     status: string | undefined
     updateStatus: (status: string) => void
     isOwner: boolean
-    ownerID:number
+    ownerID: number
+    editProfile: (profile: EditProfileType, ownerId: number) => void
 }
 export const ProfileDescription = (props: AboutProfilePropsType) => {
     let [collapsed, setCollapsed] = useState(false)
@@ -24,7 +24,7 @@ export const ProfileDescription = (props: AboutProfilePropsType) => {
     let [editProfileMode, setEditProfileMode] = useState(false)
 
     const toggleEditMode = () => {
-      setEditProfileMode(!editProfileMode)
+        setEditProfileMode(!editProfileMode)
     }
 
     const myName = props.profile!.fullName.split(' ').map((elem: string) => {
@@ -37,12 +37,13 @@ export const ProfileDescription = (props: AboutProfilePropsType) => {
         <div className={s.wrapperDescription}>
             <div className={s.headerDescription}>
                 <span className={s.profileName}>{myName}</span>
-                {props.isOwner && <span onClick={toggleEditMode}  className={s.profileEdit}>Edit profile</span>}
+                {props.isOwner && <span onClick={toggleEditMode} className={s.profileEdit}>Edit profile</span>}
             </div>
             {editProfileMode
                 ? <EditProfileForm toggleEditMode={toggleEditMode}
-                                    profile={props.profile}
-                                    ownerID={props.ownerID}
+                                   profile={props.profile}
+                                   ownerID={props.ownerID}
+                                   editProfile={props.editProfile}
                 />
                 : <>
                     <ProfileStatus status={props.status}
@@ -51,9 +52,9 @@ export const ProfileDescription = (props: AboutProfilePropsType) => {
                     />
                     <div className={s.itemProfileInfo}>
                         <span className={s.titleItem}>About me:</span>
-                        <span className={s.descriptionItem}>{props.profile.aboutMe ? props.profile.aboutMe : '-' }</span>
+                        <span className={s.descriptionItem}>{props.profile.aboutMe ? props.profile.aboutMe : '-'}</span>
                     </div>
-                    {collapsed && <FullInfo profile={props.profile} />}
+                    {collapsed && <FullInfo profile={props.profile}/>}
                     <SuperButton onClick={toggleCollapsed}>More info</SuperButton>
                 </>
             }

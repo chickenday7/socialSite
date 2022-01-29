@@ -10,19 +10,35 @@
 
 
 .app-wrapper {
+  position: relative;
   display: grid;
   grid-template-areas:
   "h h h"
-  "n c c";
+  "n c c"
+  'f f f'
+;
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
   width: 1203px;
+  height: 110vh;
   margin: 0 auto;
+
 }
 
 .app-wrapper__content{
   grid-area: c;
-  margin: 0 10px 0 20px;
+  margin-bottom: 100px;
+  height: 80%;
+  padding: 0 25px;
+}
+.footer{
+  grid-area: f;
+  min-height: 50px;
+  background: rgba(91,93,106,0.1);
+  border-radius: 15px 15px 0 0 ;
+  position: absolute;
+  width: 1243px;
+  bottom: 0;
 }
 
 
