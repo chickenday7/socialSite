@@ -2,7 +2,7 @@ import React from 'react';
 import './scss/App.scss';
 import HeaderContainer from "./components/Header/HeaderContainer";
 import NavigationContainer from "./components/Navigation/Navigation";
-import {Route, Routes} from "react-router-dom";
+import {HashRouter, Route, Routes} from "react-router-dom";
 import MessagesContainer from "./components/Content/Messages/MessagesContainer";
 import Friends from "./components/Content/Friends/Friends";
 import ProfileContainer from "./components/Content/Profile/ProfileContainer";
@@ -31,7 +31,7 @@ class App extends React.Component<AppPropsType, {}> {
                         <NavigationContainer/>
                         <div className={'app-wrapper__content'}>
                             <Routes>
-                                <Route path={"/"} element={<ProfileContainer/>}/>
+                                <Route path={"/"} element={<Friends/>}/>
                                 <Route path={"/profile/:userId"} element={<ProfileContainer/>}/>
                                 <Route path={"/messages/*"} element={<MessagesContainer/>}/>
                                 <Route path={"/friends/"} element={<Friends/>}/>
