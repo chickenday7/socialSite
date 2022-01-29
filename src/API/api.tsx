@@ -8,7 +8,7 @@ type ResponseType<T> = {
     data: T
 }
 const instance = axios.create({
-    withCredentials: true,
+    // withCredentials: true,
     headers: {
         'API-KEY': '8c93655a-bf70-40c8-9c2a-4929b88b2e49'
     },
