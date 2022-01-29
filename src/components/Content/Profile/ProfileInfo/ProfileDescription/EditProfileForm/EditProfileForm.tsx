@@ -5,6 +5,20 @@ import {ProfileType} from "../../../../../Redux/profileReducer";
 import {EditProfileType} from "../../../../../../API/api";
 import {EditContactsForm} from "./EditContactsForm";
 
+export type Test = {
+
+    facebook?: null | string
+    github?: null | string
+    instagram?: null | string
+    mainLink?: null | string
+    twitter?: null | string
+    vk?: null | string
+    website?: null | string
+    youtube?: null | string
+
+}
+
+
 export type Input = {
     userId: number
     lookingForAJob: boolean
@@ -35,6 +49,7 @@ type EditProfileFormPropsType = {
 export const EditProfileForm = (props: EditProfileFormPropsType) => {
     const {register, handleSubmit, watch, formState: {errors}} = useForm<Input>();
     const onSubmit: SubmitHandler<Input> = data => {
+        console.log(data)
         data.userId = props.ownerID
         props.editProfile(data, data.userId)
         props.toggleEditMode()

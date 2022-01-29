@@ -32,7 +32,7 @@ class App extends React.Component<AppPropsType, {}> {
                         <div className={'app-wrapper__content'}>
                             <Routes>
                                 <Route path={"/"} element={<ProfileContainer/>}/>
-                                <Route path={"/Profile/:userId"} element={<ProfileContainer/>}/>
+                                <Route path={"/profile/:userId"} element={<ProfileContainer/>}/>
                                 <Route path={"/messages/*"} element={<MessagesContainer/>}/>
                                 <Route path={"/friends/"} element={<Friends/>}/>
                                 {/*<Route path={"/news/*"} element={<News />}/>*/}
