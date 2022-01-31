@@ -1,5 +1,5 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
 import {connect} from "react-redux";
 
 const  Navigation = (props:any) => {
@@ -32,6 +32,7 @@ const  Navigation = (props:any) => {
         <nav className={'nav'}>
             <ul>
                 <li className={'nav__elem'}>
+                    
                     <NavLink to={`/profile/${props.userID}`} style = {({ isActive }) =>
                         isActive ? activeStyle : undefined
                     } >Profile</NavLink>

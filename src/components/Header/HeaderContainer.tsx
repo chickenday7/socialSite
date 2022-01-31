@@ -21,7 +21,6 @@ class HeaderAPI extends React.Component<HeaderAPIType> {
     }
 
     render() {
-        console.log(this.props)
         return (<Header {...this.props} />);
     }
 }

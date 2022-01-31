@@ -38,11 +38,13 @@ type ActionType =
     SetOwnerPhotoACtype
 
 const authReducer = (state = initialState, action: ActionType) => {
+    debugger
     switch (action.type) {
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.data
+                ...action.data,
+                isAuth: action.data.id !== undefined
             }
         case LOG_OUT:
             return {
@@ -109,7 +111,7 @@ export const authMeTC = () => {
         return authAPI.authMe()
             .then((response) => {
                 let {id, email, login} = response.data
-                dispatch(setUserDataAC(id, email, login, true))
+                dispatch(setUserDataAC(id, email, login))
             })
     }
 }
@@ -129,7 +131,7 @@ export const loginMeTC = (loginData: LoginDataRequestType) => {
                     authAPI.authMe()
                         .then((response) => {
                             let {id, email, login} = response.data
-                            dispatch(setUserDataAC(id, email, login, true))
+                            dispatch(setUserDataAC(id, email, login))
                             dispatch(resultAuthAC(true))
                             dispatch(inProgressAC(false))
                         })
@@ -165,11 +167,11 @@ const resultAuthAC = (resultAuth: boolean): ResultAuthACType => {
 }
 
 
-type SetUserDataACType = { type: typeof SET_USER_DATA, data: { id: number, email: string, login: string, isAuth: boolean } }
-export const setUserDataAC = (id: number, email: string, login: string, isAuth: boolean): SetUserDataACType => {
+type SetUserDataACType = { type: typeof SET_USER_DATA, data: { id: number, email: string, login: string} }
+export const setUserDataAC = (id: number, email: string, login: string): SetUserDataACType => {
     return {
         type: SET_USER_DATA,
-        data: {id, email, login, isAuth},
+        data: {id, email, login},
 
     }
 }

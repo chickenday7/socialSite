@@ -14,7 +14,7 @@ const Header = (props: HeaderPropsType) => {
     const onLogoutMe = () => {
       props.logout()
     }
-
+    console.log(props.auth.isAuth)
     return (
         <header className={'header'}>
             <div className={'header__logo'}>logo</div>

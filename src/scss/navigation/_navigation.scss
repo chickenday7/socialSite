@@ -13,9 +13,11 @@ li{
           color: orange;
           //text-decoration: underline;
         }
+        &:link{
+          color: $gray;
+        }
     }
 }
-
 
 .nav{
   grid-area: n;
