@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/socialSite/static/css/main.c7ae5ec2.chunk.css",
-    "main.js": "/socialSite/static/js/main.e4df3314.chunk.js",
-    "main.js.map": "/socialSite/static/js/main.e4df3314.chunk.js.map",
+    "main.css": "/socialSite/static/css/main.aef53035.chunk.css",
+    "main.js": "/socialSite/static/js/main.b471aa94.chunk.js",
+    "main.js.map": "/socialSite/static/js/main.b471aa94.chunk.js.map",
     "runtime-main.js": "/socialSite/static/js/runtime-main.615a4690.js",
     "runtime-main.js.map": "/socialSite/static/js/runtime-main.615a4690.js.map",
     "static/js/2.82be31a5.chunk.js": "/socialSite/static/js/2.82be31a5.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.370e6316.chunk.js": "/socialSite/static/js/3.370e6316.chunk.js",
     "static/js/3.370e6316.chunk.js.map": "/socialSite/static/js/3.370e6316.chunk.js.map",
     "index.html": "/socialSite/index.html",
-    "static/css/main.c7ae5ec2.chunk.css.map": "/socialSite/static/css/main.c7ae5ec2.chunk.css.map",
+    "static/css/main.aef53035.chunk.css.map": "/socialSite/static/css/main.aef53035.chunk.css.map",
     "static/js/2.82be31a5.chunk.js.LICENSE.txt": "/socialSite/static/js/2.82be31a5.chunk.js.LICENSE.txt",
     "static/media/App.scss": "/socialSite/static/media/Lexend-SemiBold.8b61968f.ttf",
     "static/media/user.c5d8a3f8.png": "/socialSite/static/media/user.c5d8a3f8.png"
@@ -18,7 +18,7 @@
   "entrypoints": [
     "static/js/runtime-main.615a4690.js",
     "static/js/2.82be31a5.chunk.js",
-    "static/css/main.c7ae5ec2.chunk.css",
-    "static/js/main.e4df3314.chunk.js"
+    "static/css/main.aef53035.chunk.css",
+    "static/js/main.b471aa94.chunk.js"
   ]
 }
