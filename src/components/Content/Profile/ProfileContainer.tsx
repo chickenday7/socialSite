@@ -28,9 +28,7 @@ class ProfileContainer extends React.Component<ProfilePropsType, LocalStateType>
     }
 
     componentDidMount() {
-        this.props.router.userId === 'undefined'
-            ? this.props.getProfile(2)
-            : this.props.getProfile(+this.props.router.userId!)
+        this.props.getProfile(+this.props.router.userId!)
         this.props.setStatus(+this.props.router.userId!)
         this.props.ownerCheckAC(+this.props.router.userId!, this.props.ownerID)
     }
@@ -41,6 +39,7 @@ class ProfileContainer extends React.Component<ProfilePropsType, LocalStateType>
             this.props.setStatus(+this.props.router.userId!)
             this.props.ownerCheckAC(+this.props.router.userId!, this.props.ownerID)
         }
+
     }
 
     render() {

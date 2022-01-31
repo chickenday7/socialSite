@@ -11,14 +11,16 @@ export const FullInfo = (props: FullInfoPropsType) => {
         return (
             <div key={index} className={s.itemContacts}>
                 <span className={s.titleItem}>{elem[0]}:</span>
-                <a href={elem[1] ? elem[1] : '#'} className={s.descriptionItem}>{elem[1] ? elem[1] : '-'}</a>
+                {elem[1]
+                    ? <a href={elem[1]} className={s.descriptionItem}>{elem[1]}</a>
+                    : <span className={s.descriptionItem} >-</span>
+                }
             </div>
         )
     })
     return (
 
         <div className={s.wrapperFullInfo}>
-
             <div className={s.itemProfileInfo}>
                 <span className={s.titleItem}>Full name:</span>
                 <span className={s.descriptionItem}>{props.profile.fullName}</span>

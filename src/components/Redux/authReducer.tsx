@@ -1,21 +1,24 @@
-import {authAPI} from "../../API/api";
+import {authAPI, profileAPI} from "../../API/api";
 import {Dispatch} from "redux";
-
+import {ThunkDispatch} from "redux-thunk";
+import {StateType} from "./redux-store";
 
 const SET_USER_DATA = "SET_USER_DATA"
 const LOG_OUT = 'LOG_OUT'
 const IN_PROGRESS = 'IN_PROGRESS'
 const RESULT_AUTH = 'RESULT_AUTH'
 const TOGGLE_ERROR = 'TOGGLE_ERROR'
+const SET_PROFILE_PHOTO = 'SET_PROFILE_PHOTO'
 
 
-let initialState = {
+let initialState:AuthReducerType = {
     id: null,
     email: null,
     login: null,
     isAuth: false,
     isFetching: false,
     authError: false,
+    ownerPhoto: null
 }
 export type AuthReducerType = {
     id: number | null
@@ -24,15 +27,17 @@ export type AuthReducerType = {
     isAuth: boolean
     isFetching: boolean
     authError: boolean
+    ownerPhoto: string | null
 }
 type ActionType =
     SetUserDataACType |
     LogoutMeACType |
     InProgressACType |
     ResultAuthACType |
-    ToggleErrorAC
+    ToggleErrorAC |
+    SetOwnerPhotoACtype
 
-const authReducer = (state: AuthReducerType = initialState, action: ActionType): AuthReducerType => {
+const authReducer = (state = initialState, action: ActionType) => {
     switch (action.type) {
         case SET_USER_DATA:
             return {
@@ -46,7 +51,8 @@ const authReducer = (state: AuthReducerType = initialState, action: ActionType):
                 login: null,
                 isAuth: false,
                 isFetching: false,
-                authError: false
+                authError: false,
+                ownerPhoto: null
             }
         case IN_PROGRESS:
             return {
@@ -63,6 +69,11 @@ const authReducer = (state: AuthReducerType = initialState, action: ActionType):
                 ...state,
                 authError: action.stateError
             }
+        case SET_PROFILE_PHOTO:
+            return {
+                ...state,
+                ownerPhoto:action.ownerPhoto
+            }
         default:
             return state
     }
@@ -77,6 +88,17 @@ export const logoutMeTC = () => {
             .then((res) => {
                 if (res.resultCode === 0) {
                     dispatch(logoutMeAC())
+                }
+            })
+    }
+}
+export const setOwnerPhotoTC = (ownerID:number)=>{
+    return (dispatch:ThunkDispatch<StateType, unknown, ActionType>) => {
+        profileAPI.getProfile(ownerID)
+            .then(res => {
+                debugger
+                if(res.data.photos.small){
+                    dispatch(setOwnerPhotoAC(res.data.photos.small))
                 }
             })
     }
@@ -157,6 +179,14 @@ export const toggleErrorAC = (stateError: boolean): ToggleErrorAC => {
     return {
         type: TOGGLE_ERROR,
         stateError
+    }
+}
+
+type SetOwnerPhotoACtype = {type: typeof SET_PROFILE_PHOTO, ownerPhoto:string}
+const setOwnerPhotoAC = (ownerPhoto:string):SetOwnerPhotoACtype=>{
+    return{
+        type: SET_PROFILE_PHOTO,
+        ownerPhoto
     }
 }
 

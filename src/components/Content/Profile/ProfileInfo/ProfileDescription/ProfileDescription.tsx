@@ -54,6 +54,10 @@ export const ProfileDescription = (props: AboutProfilePropsType) => {
                         <span className={s.titleItem}>About me:</span>
                         <span className={s.descriptionItem}>{props.profile.aboutMe ? props.profile.aboutMe : '-'}</span>
                     </div>
+                    <div className={s.itemProfileInfo}>
+                        <span className={s.titleItem}>Looking for a job:</span>
+                        <span className={s.descriptionItem}>{props.profile.lookingForAJobDescription ? props.profile.lookingForAJobDescription : '-'}</span>
+                    </div>
                     {collapsed && <FullInfo profile={props.profile}/>}
                     <SuperButton onClick={toggleCollapsed}>More info</SuperButton>
                 </>

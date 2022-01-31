@@ -17,13 +17,13 @@ type ProfileInfoProps = {
     uploadProfilePhoto:(photo:File,ownerId:number)=>void
 }
 const ProfileInfo = (props: ProfileInfoProps) => {
-    console.log(typeof useState())
     if (props.profile !== null) {
         return (
             <div className={s.wrapperProfile}>
                 <ProfilePhoto photos={props.profile.photos}
                               ownerId={props.ownerID}
                               uploadProfilePhoto={props.uploadProfilePhoto}
+                              isOwner={props.isOwner}
                 />
                 <ProfileDescription profile={props.profile}
                                     status={props.status}

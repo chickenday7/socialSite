@@ -67,8 +67,8 @@ export const EditProfileForm = (props: EditProfileFormPropsType) => {
             <label>About me:</label>
             <textarea
                 defaultValue={props.profile.aboutMe ? props.profile.aboutMe : ''}  {...register('aboutMe', {required: true})}/>
-            <label>JOB</label>
-            <div onClick={changeStateLookingForAJob}>
+            <div className={s.wrapperInputCheckBox} onClick={changeStateLookingForAJob}>
+                <label>JOB</label>
                 <input type={'checkbox'} checked={localLookingForAJob} {...register('lookingForAJob')} />
             </div>
             <input

@@ -15,8 +15,7 @@
   grid-template-areas:
   "h h h"
   "n c c"
-  'f f f'
-;
+  'f f f';
   grid-template-rows: 60px 1fr;
   grid-template-columns: 2fr 10fr;
   width: 1203px;
@@ -27,17 +26,18 @@
 
 .app-wrapper__content{
   grid-area: c;
-  margin-bottom: 100px;
   height: 80%;
-  padding: 0 25px;
+  padding: 20px 25px 155px 0 ;
+  background: white;
+  border-radius: 15px;
 }
 .footer{
   grid-area: f;
   min-height: 50px;
-  background: rgba(91,93,106,0.1);
+  background: white;
   border-radius: 15px 15px 0 0 ;
   position: absolute;
-  width: 1243px;
+  width: 1203px;
   bottom: 0;
 }
 
