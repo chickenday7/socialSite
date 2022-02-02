@@ -6,8 +6,10 @@
   "title title title"
   "list list filter";
   grid-template-rows: 30px 1fr;
+  box-sizing: border-box;
 
   &__title {
+    padding: 0 0 0 30px;
     grid-area: title;
     font-family: 'Lexend-Semibold';
     font-size: 28px;
@@ -16,10 +18,10 @@
   }
 
   &__list {
+    padding: 0 15px;
     grid-area: list;
     display: flex;
     flex-direction: column;
-    border: black solid 1px;
     margin-top: 15px;
     width: 755px;
     height: 100%;
@@ -27,11 +29,11 @@
 
   &__filter {
     grid-area: filter;
-    border: black solid 1px;
-    margin-left: 15px;
+    border: $gray solid 1px;
     margin-top: 15px;
     height: 500px;
-    width: 222px;
+    width: 190px;
+    border-radius: 15px;
   }
 }
 
@@ -39,14 +41,12 @@
   display: flex;
   flex-direction: row;
   padding: 15px;
-  //border-bottom: black solid 1px;
   align-items: center;
   flex-grow: 1;
   max-width:740px;
   max-height: 106.44px;
 
   &__photo {
-    border: black solid 1px;
     border-radius: 80px;
     width: 80px;
     height: 80px;

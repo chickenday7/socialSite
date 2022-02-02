@@ -1,8 +1,11 @@
 import React from "react";
-import {NavLink} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {AuthReducerType} from "../Redux/authReducer";
 import user from './../../img/user/user.png'
 import s from './HeaderStyle.module.scss'
+import {Avatar, Button} from "@material-ui/core";
+import {useStyles} from "./HeaderStyles";
+import logo from './../../img/header/logo.svg'
 
 type HeaderPropsType = {
     auth:AuthReducerType
@@ -14,18 +17,21 @@ const Header = (props: HeaderPropsType) => {
     const onLogoutMe = () => {
       props.logout()
     }
-    console.log(props.auth.isAuth)
+    const classes = useStyles()
     return (
-        <header className={'header'}>
-            <div className={'header__logo'}>logo</div>
-            <div className={'header__profile'}>
+        <header className={s.header}>
+            <div className={s.wrapperLogo}>
+                <img className={s.logo} src={logo}/>
+                <span className={s.titleSite}>Paper</span>
+            </div>
+            <div className={s.header__profile}>
                 {props.auth.isAuth
                     ? <div className={s.wrapperRightMenu}>
-                        {props.ownerPhoto ? <img className={s.headerPhoto} src={props.ownerPhoto}/> : <img className={s.headerPhoto}  src={user}/>}
-                        {props.auth.login}
-                        <button onClick={onLogoutMe}>logout</button>
+                        {props.ownerPhoto ? <Avatar className={classes.small} src={props.ownerPhoto}/> : <Avatar className={classes.small} src={user}/>}
+                        <span className={s.ownerName}>{props.auth.login}</span>
+                        <Button className={classes.buttonLogout} onClick={onLogoutMe}><span className={s.linkToLogout}>Log out</span></Button>
                     </div>
-                    : <NavLink to={'/login'}>Login</NavLink>
+                    : <Button className={classes.buttonLogin} ><Link className={s.linkToLogin} to={'/login'}>Login</Link></Button>
                 }
 
             </div>
